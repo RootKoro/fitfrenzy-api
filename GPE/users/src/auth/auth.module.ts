@@ -8,6 +8,7 @@ import { LocalStrategy } from './local.auth';
 import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controller';
 import { UsersService } from "src/users/users.service";
+import { JwtStrategy } from "./jwt.strategy";
 
 
 @Module({
@@ -15,8 +16,9 @@ import { UsersService } from "src/users/users.service";
     secret: 'secretKey',
     signOptions: { expiresIn: '60s' },
   }), MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])],
-  providers: [UsersService, AuthService, LocalStrategy],
+  providers: [UsersService, AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
+  exports: [AuthService]
 })
 export class AuthModule { }
 
