@@ -3,7 +3,7 @@ services:
   mongodb:
     image: mongo:latest
     env_file:
-      - api/.env
+      - .env
     ports:
       - 27017:27017
     volumes:
@@ -25,11 +25,12 @@ services:
     ports:
         - 8081:8081
 
-  api:
+  users_api:
+    container_name: users
     build:
         context: .
         target: development
-        dockerfile: api/Dockerfile
+        dockerfile: users/Dockerfile
     volumes:
       - .:/app
       - /app/node_modules
@@ -37,7 +38,24 @@ services:
       - 3000:3000
     command: npm run start:dev
     env_file:
-      - api/.env
+      - users/.env
+    depends_on:
+      - mongodb
+
+  sports_api:
+    container_name: sports
+    build:
+        context: .
+        target: development
+        dockerfile: sports/Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3333:3333
+    command: npm run start:dev
+    env_file:
+      - sports/.env
     depends_on:
       - mongodb
 
