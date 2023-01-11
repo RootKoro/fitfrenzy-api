@@ -1,10 +1,9 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:front/config.dart';
-import 'utilities/constants.dart';
+import 'package:front/screens/utilities/constants.dart';
 import 'package:front/models/user.dart';
 
 class Register extends StatefulWidget {
@@ -184,16 +183,12 @@ class _RegisterState extends State<Register> {
         age: int.parse(age));
 
     var header = {'Content-Type': 'application/json'};
-    try {
-      final response = await Dio().post('${Config.apiUserUrl}/users/signup',
-          queryParameters: header, data: user.toJson());
-      if (response.statusCode == 201) {
-        print(response.data);
-      } else {
-        throw Exception('Failed to create user');
-      }
-    } catch (e) {
-      print(e);
+    final response = await Dio().post('${Config.apiUserUrl}/users/signup',
+        queryParameters: header, data: user.toJson());
+    if (response.statusCode == 201) {
+      print(response.data);
+    } else {
+      throw Exception('Failed to create user');
     }
   }
 }

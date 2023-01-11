@@ -1,6 +1,10 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'utilities/constants.dart';
+import 'package:front/config.dart';
+import 'package:front/screens/utilities/constants.dart';
 import 'register.dart';
 
 // Create a stateful login screen class
@@ -14,14 +18,16 @@ class LoginScreen extends StatefulWidget {
 
 // Create a state class for the login screen class
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool _rememberMe = false;
 
-  Widget _buildEmailTF() {
+  Widget _buildUsernameTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const Text(
-          'Email',
+          'Username',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -33,20 +39,21 @@ class _LoginScreenState extends State<LoginScreen> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: const TextField(
+          child: TextField(
+            controller: _usernameController,
             keyboardType: TextInputType.emailAddress,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
                 Icons.email,
                 color: Colors.white,
               ),
-              hintText: 'Enter your Email',
+              hintText: 'Enter your Username',
               hintStyle: TextStyle(
                 color: Colors.white54,
                 fontFamily: 'OpenSans',
@@ -75,13 +82,14 @@ class _LoginScreenState extends State<LoginScreen> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: const TextField(
+          child: TextField(
+            controller: _passwordController,
             obscureText: true,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
@@ -160,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           primary: Colors.white,
         ),
-        onPressed: () => print('Login Button Pressed'),
+        onPressed: () => LoginUser(),
         child: const Text(
           'LOGIN',
           style: TextStyle(
@@ -270,6 +278,29 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  void LoginUser() async {
+    final String username = _usernameController.text;
+    final String password = _passwordController.text;
+
+    var headers = {
+      'Content-Type': 'application/json',
+    };
+
+    final response = await Dio().post('${Config.apiUserUrl}/auth/login',
+        data: jsonEncode(<String, String>{
+          'username': username,
+          'password': password,
+        }),
+        options: Options(headers: headers));
+
+    if (response.statusCode == 201) {
+      //redirect to form screen
+      print(response.data);
+    } else {
+      print(response);
+    }
+  }
+
   //Create BuildContext build
   @override
   Widget build(BuildContext context) {
@@ -318,7 +349,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(height: 30.0),
-                      _buildEmailTF(),
+                      _buildUsernameTF(),
                       const SizedBox(
                         height: 30.0,
                       ),
