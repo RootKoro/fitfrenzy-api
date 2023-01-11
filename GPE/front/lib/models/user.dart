@@ -4,7 +4,7 @@ class User {
   final String lastname;
   final String username;
   final String password;
-  final String age;
+  final int age;
 
   User(
       {this.uid,
@@ -23,4 +23,13 @@ class User {
         password: json['password'],
         age: json['age']);
   }
+
+  Map<String, dynamic> toJson() => {
+        'uid': uid,
+        'firstname': firstname,
+        'lastname': lastname,
+        'username': username,
+        'password': password,
+        'age': age
+      };
 }

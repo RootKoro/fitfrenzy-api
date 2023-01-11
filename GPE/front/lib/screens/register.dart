@@ -170,8 +170,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  Future<User> RegisterUser() async {
-    print('RegisterUser');
+  void RegisterUser() async {
     final String firstname = _firstnameController.text;
     final String lastname = _lastnameController.text;
     final String username = _usernameController.text;
@@ -182,15 +181,19 @@ class _RegisterState extends State<Register> {
         lastname: lastname,
         username: username,
         password: password,
-        age: age);
+        age: int.parse(age));
 
     var header = {'Content-Type': 'application/json'};
-    final response = await Dio().post('${Config.apiUserUrl}/users/signup',
-        queryParameters: header, data: jsonEncode(user));
-    if (response.statusCode == 201) {
-      return User.fromJson(response.data);
-    } else {
-      throw Exception('Failed to create user');
+    try {
+      final response = await Dio().post('${Config.apiUserUrl}/users/signup',
+          queryParameters: header, data: user.toJson());
+      if (response.statusCode == 201) {
+        print(response.data);
+      } else {
+        throw Exception('Failed to create user');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }
