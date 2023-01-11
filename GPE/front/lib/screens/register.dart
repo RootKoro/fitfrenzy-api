@@ -1,6 +1,11 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:front/config.dart';
 import 'utilities/constants.dart';
+import 'package:front/models/user.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -115,7 +120,7 @@ class _RegisterState extends State<Register> {
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () => print('Register Button Pressed'),
+        onPressed: () => RegisterUser(),
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
@@ -163,5 +168,29 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  Future<User> RegisterUser() async {
+    print('RegisterUser');
+    final String firstname = _firstnameController.text;
+    final String lastname = _lastnameController.text;
+    final String username = _usernameController.text;
+    final String password = _passwordController.text;
+    final String age = _ageController.text;
+    final User user = User(
+        firstname: firstname,
+        lastname: lastname,
+        username: username,
+        password: password,
+        age: age);
+
+    var header = {'Content-Type': 'application/json'};
+    final response = await Dio().post('${Config.apiUserUrl}/users/signup',
+        queryParameters: header, data: jsonEncode(user));
+    if (response.statusCode == 201) {
+      return User.fromJson(response.data);
+    } else {
+      throw Exception('Failed to create user');
+    }
   }
 }
