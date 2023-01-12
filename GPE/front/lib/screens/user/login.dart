@@ -286,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
       'Content-Type': 'application/json',
     };
 
-    final response = await Dio().post('${Config.apiUserUrl}/auth/login',
+    final response = await Dio().post('${Config.apiUrl}/auth/login',
         data: jsonEncode(<String, String>{
           'username': username,
           'password': password,

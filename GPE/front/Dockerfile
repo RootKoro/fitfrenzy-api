@@ -1,17 +1,43 @@
+FROM ubuntu:22.04
+
 # Install flutter
-FROM cirrusci/flutter:3.3.8 AS build-env
+FROM ubuntu:20.04
 
-# Run flutter doctor and enable web
-RUN flutter doctor
-RUN flutter config --enable-web
+#Removing frontend interaction from debian
+ARG DEBIAN_FRONTEND=noninteractive
 
-# Copy files to container and build
-USER root
-RUN mkdir /app/
-COPY ./front /app/
+# Prerequisites
+RUN apt update && apt install -y curl git unzip xz-utils zip libglu1-mesa openjdk-8-jdk wget
+
+#Setting up flutter
+RUN curl -L https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.3.10-stable.tar.xz | tar -C . -xJ
+RUN git config --global --add safe.directory /flutter
+ENV PATH $PATH:/flutter/bin
+
+# Set up new user
 WORKDIR /app/
-RUN flutter clean
-RUN flutter build web
+COPY . /app/
+
+
+#Creating new user
+RUN useradd -ms /bin/bash flutter
+
+#Prepare Android directories and system variables
+RUN mkdir -p Android/sdk
+ENV ANDROID_SDK_ROOT /app/Android/sdk
+RUN mkdir -p .android && touch .android/repositories.cfg
+
+#Set up Android SDK
+RUN wget -O sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN unzip sdk-tools.zip && rm sdk-tools.zip
+RUN mv tools Android/sdk/tools
+RUN cd Android/sdk/tools/bin && yes | ./sdkmanager --licenses
+RUN cd Android/sdk/tools/bin && ./sdkmanager "build-tools;29.0.2" "patcher;v4" "platform-tools" "platforms;android-29" "sources;android-29"
+ENV PATH $PATH:/app/Android/sdk/platform-tools
+
+#Basic flutter check
+RUN flutter doctor 
+RUN flutter upgrade
 
 # Record the exposed port
 EXPOSE 5000
