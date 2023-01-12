@@ -1,5 +1,17 @@
 version: '3.8'
 services:
+  lb:
+      image: haproxy:2.2
+      restart: always
+      ports:
+          - "3005:3005"
+      volumes:
+          - ./haproxy:/usr/local/etc/haproxy
+      deploy:
+          resources:
+              limits:
+                  memory: 500M
+      container_name: Haproxy
   mongodb:
     image: mongo:latest
     env_file:
