@@ -37,6 +37,19 @@ services:
     ports:
         - 8081:8081
 
+  flutter:
+    build: 
+      context: .
+      target: development
+      dockerfile: front/Dockerfile
+    container_name: suspicious_cray
+    volumes:
+      - .:/app
+    ports: 
+      - 5000:5000
+    restart: always
+    command: sh -c "flutter pub get && flutter run -d web-server --web-port 5000 --web-hostname"
+
   users_api:
     container_name: users
     build:

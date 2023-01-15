@@ -1,7 +1,5 @@
-FROM ubuntu:22.04
-
 # Install flutter
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 #Removing frontend interaction from debian
 ARG DEBIAN_FRONTEND=noninteractive
@@ -14,8 +12,7 @@ RUN curl -L https://storage.googleapis.com/flutter_infra_release/releases/stable
 RUN git config --global --add safe.directory /flutter
 ENV PATH $PATH:/flutter/bin
 
-# Set up new user
-WORKDIR /app/
+WORKDIR /app
 COPY . /app/
 
 
@@ -38,11 +35,3 @@ ENV PATH $PATH:/app/Android/sdk/platform-tools
 #Basic flutter check
 RUN flutter doctor 
 RUN flutter upgrade
-
-# Record the exposed port
-EXPOSE 5000
-
-# make server startup script executable and start the web server
-RUN ["chmod", "+x", "/app/server.sh"]
-
-ENTRYPOINT [ "/app/server.sh"]
