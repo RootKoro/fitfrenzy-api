@@ -10,5 +10,5 @@
     "runArgs": ["--privileged"],
     "extensions": ["dart-code.flutter"],
     "workspaceMount": "source=${localWorkspaceFolder}/workspace,target=/home/developer/workspace,type=bind,consistency=delegated",
-    "workspaceFolder": "/app/workspace"
+    "workspaceFolder": "/home/flutter/workspace"
   }
