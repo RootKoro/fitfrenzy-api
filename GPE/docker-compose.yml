@@ -38,20 +38,16 @@ services:
         - 8081:8081
 
   flutter:
-    image: cirrusci/flutter:stable
     container_name: gpe_flutter
     build: 
       context: ./
       target: development
       dockerfile: front/Dockerfile 
-      args: 
-      - VERSION=stable
     volumes:
       - .:/app
-      - /app/pubspec.lock
     ports: 
       - 5000:5000
-    command: flutter run --release
+    command: flutter run -d web-server --web-port 5000 
 
   users_api:
     container_name: users

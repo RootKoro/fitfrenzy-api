@@ -1,19 +1,13 @@
 # Install flutter
-FROM cirrusci/flutter:stable
-
-#Removing frontend interaction from debian
-ARG DEBIAN_FRONTEND=noninteractive
+FROM cirrusci/flutter:latest AS development
 
 # Prerequisites
 RUN apt-get update && apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev
 
-#Set up new user
-RUN useradd -ms /bin/bash flutter
-USER flutter
-
 #Inserting flutter project
-WORKDIR /app
-COPY . /app 
+WORKDIR /usr/src/app
+COPY . . 
 
 #Basic check to download Dart SDK
 RUN flutter doctor
+RUN flutter pub get
