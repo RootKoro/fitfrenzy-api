@@ -286,7 +286,7 @@ class _LoginScreenState extends State<LoginScreen> {
       'Content-Type': 'application/json',
     };
 
-    final response = await Dio().post('${Config.apiUserUrl}/auth/login',
+    final response = await Dio().post('${Config.apiUrl}/auth/login',
         data: jsonEncode(<String, String>{
           'username': username,
           'password': password,
@@ -359,6 +359,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       _buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
+                      /*
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -376,6 +377,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
+                      */
                       _buildSignupBtn(),
                     ],
                   ),

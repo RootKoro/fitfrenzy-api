@@ -183,12 +183,16 @@ class _RegisterState extends State<Register> {
         age: int.parse(age));
 
     var header = {'Content-Type': 'application/json'};
-    final response = await Dio().post('${Config.apiUserUrl}/users/signup',
-        queryParameters: header, data: user.toJson());
-    if (response.statusCode == 201) {
-      print(response.data);
-    } else {
-      throw Exception('Failed to create user');
+    try {
+      final response = await Dio().post('${Config.apiUrl}/users/signup',
+          queryParameters: header, data: user.toJson());
+      if (response.statusCode == 201) {
+        print(response.data);
+      } else {
+        throw Exception('Failed to create user');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }
