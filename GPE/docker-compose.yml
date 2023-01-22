@@ -40,14 +40,14 @@ services:
   flutter:
     container_name: gpe_flutter
     build: 
-      context: ./
+      context: ./front
       target: development
-      dockerfile: front/Dockerfile 
-    volumes:
-      - .:/app
     ports: 
-      - 5000:5000
-    command: flutter run -d web-server --web-port 5000 
+      - "5000:5000"
+    volumes:
+      - //var/run/docker.sock:/var/run/docker.sock
+    command: flutter run -d web-server --web-port 5000 --web-hostname 0.0.0.0
+    restart: always
 
   users_api:
     container_name: users

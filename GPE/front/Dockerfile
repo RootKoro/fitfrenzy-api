@@ -1,13 +1,24 @@
-# Install flutter
+#Launch current project using cirrusci/flutter image
 FROM cirrusci/flutter:latest AS development
 
-# Prerequisites
-RUN apt-get update && apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev
-
-#Inserting flutter project
+# Set the working directory to /app
 WORKDIR /usr/src/app
-COPY . . 
 
-#Basic check to download Dart SDK
-RUN flutter doctor
+# Copy the current directory contents into the container current working directory
+COPY . .
+
+# Install any needed packages specified in requirements.txt
 RUN flutter pub get
+
+#Basic flutter check
+RUN flutter doctor
+
+#enable flutter for web
+RUN flutter config --enable-web
+RUN flutter packages pub global activate webdev
+
+
+
+
+
+
