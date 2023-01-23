@@ -360,6 +360,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       _buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
+                      /*
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -377,6 +378,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
+                      */
                       _buildSignupBtn(),
                     ],
                   ),
