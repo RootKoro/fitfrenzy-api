@@ -6,7 +6,11 @@ COPY ./sports/package*.json ./
 
 RUN npm install glob rimraf
 
-RUN npm install --only=development
+RUN npm install --only=
+
+RUN npm install -f class-validator
+RUN npm install -f class-transformer
+RUN npm install --save @types/bcrypt mongoose bcrypt --force
 
 COPY ./sports .
 
