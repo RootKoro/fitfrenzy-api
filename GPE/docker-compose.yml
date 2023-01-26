@@ -10,7 +10,7 @@ services:
       deploy:
           resources:
               limits:
-                  memory: 500M
+                  memory: 2048M
       container_name: Haproxy
   mongodb:
     image: mongo:latest
@@ -39,10 +39,10 @@ services:
 
   flutter:
     container_name: gpe_flutter
-    build: 
+    build:
       context: ./front
       target: development
-    ports: 
+    ports:
       - "5000:5000"
     volumes:
       - //var/run/docker.sock:/var/run/docker.sock
