@@ -8,16 +8,16 @@ export type UserDocument = User & Document;
 })
 export class User {
   @Prop({ required: true })
+  username: string;
+
+  @Prop({ required: true , select: false})
+  password: string;
+
+  @Prop({ required: true })
   firstname: string;
 
   @Prop({ required: true })
   lastname: string;
-
-  @Prop({ required: true })
-  username: string;
-
-  @Prop({ required: true })
-  password: string;
 
   @Prop({ required: true })
   age: number;
