@@ -4,7 +4,6 @@ WORKDIR /usr/src/app
 
 COPY ./sports/package*.json ./
 
-
 RUN npm install --only=development
 
 COPY ./sports .
