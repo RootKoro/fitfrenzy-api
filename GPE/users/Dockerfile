@@ -6,10 +6,6 @@ COPY ./users/package*.json ./
 
 RUN npm install --only=development
 
-RUN npm install -f class-validator
-RUN npm install -f class-transformer
-RUN npm install --save @types/bcrypt mongoose bcrypt --force
-
 COPY ./users .
 
 RUN npm run build
