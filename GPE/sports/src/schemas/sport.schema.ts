@@ -1,20 +1,24 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type UserDocument = User & Document;
+export type SportDocument = Sport & Document;
 
 @Schema({
   timestamps: { createdAt: 'created', updatedAt: 'updated' },
 })
-export class User {
+export class Sport {
   @Prop({ required: true })
-  firstname: string;
+  label: string;
 
   @Prop({ required: true })
-  lastname: string;
+  rate: number;
 
   @Prop({ required: true })
-  age: number;
+  difficulty: string;
+
+  @Prop({ required: false })
+  other_information: string
+
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const SportSchema = SchemaFactory.createForClass(Sport);
