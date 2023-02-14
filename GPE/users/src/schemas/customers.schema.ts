@@ -20,7 +20,7 @@ export class Customer extends User {
   weight: number;
 
   @Prop({ required: true})
-  ilness: String[];
+  illness: String[];
 
   @Prop({ required: true })
   exp: number;
@@ -29,7 +29,7 @@ export class Customer extends User {
   level: string;
 
   @Prop({ required: true})
-  Preferences: String[];
+  preferences: String[];
 
 }
 

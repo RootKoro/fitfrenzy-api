@@ -83,5 +83,22 @@ services:
     depends_on:
       - mongodb
 
+  statistiques_api:
+    container_name: statistiques
+    build:
+        context: .
+        target: development
+        dockerfile: statistiques/Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3334:3334
+    command: npm run start:dev
+    env_file:
+      - statistiques/.env
+    depends_on:
+      - mongodb
+
 volumes:
   mongodb_data_container:
