@@ -10,7 +10,7 @@ export class User {
   @Prop({ required: true })
   username: string;
 
-  @Prop({ required: true , select: false})
+  @Prop({ required: true })
   password: string;
 
   @Prop({ required: true })
@@ -18,9 +18,6 @@ export class User {
 
   @Prop({ required: true })
   lastname: string;
-
-  @Prop({ required: true })
-  age: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

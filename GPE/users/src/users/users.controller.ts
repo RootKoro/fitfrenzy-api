@@ -8,20 +8,29 @@ import {
   Put,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcryptjs';
+import { CreateCustomerDto } from './dto/create-customers.dto';
+import { UpdateCustomerDto } from './dto/update-customers.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post('/signup')
-  async create(@Body() createUserDto: CreateUserDto) {
+  async create(@Body() createUserDto: CreateCustomerDto) {
     const saltOrRounds = 10;
     const hashedPassword = await bcrypt.hash(createUserDto.password, saltOrRounds);
     createUserDto.password = hashedPassword;
     return this.usersService.create(createUserDto);
+  }
+
+  @Post('/admin/signup')
+  async createAdmin(@Body() createUserDto: CreateUserDto) {
+    const saltOrRounds = 10;
+    const hashedPassword = await bcrypt.hash(createUserDto.password, saltOrRounds);
+    createUserDto.password = hashedPassword;
+    return this.usersService.createAdmin(createUserDto);
   }
 
   @Get()
@@ -35,8 +44,8 @@ export class UsersController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  update(@Param('id') id: string, @Body() updateCustomerDto: UpdateCustomerDto) {
+    return this.usersService.update(id, updateCustomerDto);
   }
 
   @Delete(':id')
