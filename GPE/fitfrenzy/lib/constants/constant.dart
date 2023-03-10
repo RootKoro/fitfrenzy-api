@@ -1,0 +1,2 @@
+var showHome;
+var token;
