@@ -1,5 +1,5 @@
 import 'package:fitfrenzy/const/constant.dart';
-import 'package:fitfrenzy/views/static/home/home3.dart';
+import 'package:fitfrenzy/views/home3.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 

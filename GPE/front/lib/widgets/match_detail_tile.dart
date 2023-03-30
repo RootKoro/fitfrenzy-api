@@ -2,7 +2,7 @@ import 'package:fitfrenzy/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/hour_controller.dart';
+import '../controllers/hour_controller.dart';
 import '../models/team.dart';
 
 // ignore: must_be_immutable

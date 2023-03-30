@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:fitfrenzy/const/constant.dart';
-import 'package:fitfrenzy/widgets/news/actuality_tile.dart';
+import 'package:fitfrenzy/widgets/actuality_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';

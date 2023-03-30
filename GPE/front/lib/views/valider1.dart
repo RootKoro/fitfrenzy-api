@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'static/home/home3.dart';
+import 'home3.dart';
 
 class Valider1 extends StatefulWidget {
   const Valider1({super.key});

@@ -40,7 +40,7 @@ services:
   flutter:
     container_name: gpe_flutter
     build:
-      context: ./front
+      context: ./fitfrenzy
       target: development
     ports:
       - "5006:5006"
