@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common'
 import { SportStatService } from './sport-stat.service';
 import { CreateSportStatDto } from './dto/create-sport-stat.dto';
 import { UpdateSportStatDto } from './dto/update-sport-stat.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('sport-stats')
 @Controller('sport-stats')
 export class SportStatController {
   constructor(private readonly sportStatService: SportStatService) {}

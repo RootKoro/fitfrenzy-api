@@ -8,6 +8,7 @@ RUN npm install --only=development
 
 COPY ./users .
 
+RUN npm install @nestjs/swagger swagger-ui-express
 RUN npm run build
 
 FROM node:18-alpine as production

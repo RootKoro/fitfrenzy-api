@@ -7,10 +7,13 @@ import {
   Delete,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { SportsService } from './sports.service';
 import { UpdateSportDto } from './dto/update-sport.dto';
 import { CreateSportDto } from './dto/create-sport.dto';
 
+
+@ApiTags('sports')
 @Controller('sports')
 export class SportsController {
   constructor(private readonly sportsService: SportsService) {}

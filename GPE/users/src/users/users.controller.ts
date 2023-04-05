@@ -12,7 +12,9 @@ import * as bcrypt from 'bcryptjs';
 import { CreateCustomerDto } from './dto/create-customers.dto';
 import { UpdateCustomerDto } from './dto/update-customers.dto';
 import { CreateUserDto } from './dto/create-user.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

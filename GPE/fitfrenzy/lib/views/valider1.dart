@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 //import 'home3.dart';
 
 class Valider1 extends StatefulWidget {
-  const Valider1(
-      {super.key, required this.questionText, required this.options});
   final String questionText;
   final List<String> options;
+  const Valider1({super.key, required this.questionText, required this.options});
 
   @override
   State<Valider1> createState() => _Valider1State();

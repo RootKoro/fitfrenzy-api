@@ -10,7 +10,9 @@ import {
 import { UserStatService } from './user-stat.service';
 import { CreateUserStatDto } from './dto/create-user-stat.dto';
 import { UpdateUserStatDto } from './dto/update-user-stat.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('user-stats')
 @Controller('user-stats')
 export class UserStatController {
   constructor(private readonly userStatService: UserStatService) {}
