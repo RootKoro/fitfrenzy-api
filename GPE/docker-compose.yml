@@ -100,5 +100,39 @@ services:
     depends_on:
       - mongodb
 
+  questionary_api:
+    container_name: questionary
+    build:
+        context: .
+        target: development
+        dockerfile: questionary/Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3335:3335
+    command: npm run start:dev
+    env_file:
+      - questionary/.env
+    depends_on:
+      - mongodb
+
+  sport_program_api:
+    container_name: sport-program
+    build:
+        context: .
+        target: development
+        dockerfile: sport-program/Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3336:3336
+    command: npm run start:dev
+    env_file:
+      - sport-program/.env
+    depends_on:
+      - mongodb
+
 volumes:
   mongodb_data_container:
