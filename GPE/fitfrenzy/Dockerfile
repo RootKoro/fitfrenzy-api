@@ -25,8 +25,8 @@ ENV PATH $PATH:/home/$USER/flutter/bin
 # Remove cache from flutter/bin
 RUN rm -rf /home/$USER/flutter/bin/cache/
 
-RUN flutter channel stable && \
- flutter upgrade
+RUN flutter channel stable 
+RUN flutter upgrade
 
 # Verify the status licenses
 RUN flutter doctor
@@ -39,6 +39,7 @@ USER root
 RUN mkdir app
 COPY . /app/
 WORKDIR /app/
+RUN flutter pub get
 RUN flutter build web
 
 # Record the exposed port
