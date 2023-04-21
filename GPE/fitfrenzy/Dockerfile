@@ -6,18 +6,15 @@ ARG PLATFORM_VERSION=29
 ARG COMMAND_LINE_VERSION=latest
 
 # Installing necessary dependencies
-RUN apt update
-RUN apt install -y curl git unzip openjdk-8-jdk python3 wget
+RUN apt update && apt install -y curl git unzip openjdk-8-jdk python3 wget
 
 # Configuring the working directory and user to use
 ARG USER=root
 USER $USER
 WORKDIR /home/$USER
 
-
 # Download Flutter SDK
-RUN git clone https://github.com/flutter/flutter.git
-
+RUN git clone --depth 1 -b stable https://github.com/flutter/flutter.git
 
 # Setup PATH environment variable
 ENV PATH $PATH:/home/$USER/flutter/bin
@@ -34,19 +31,27 @@ RUN flutter doctor
 # Enable flutter web
 RUN flutter config --enable-web
 
-# Copy files to container and build
+# Install Flutter SDK separately
+RUN flutter precache
+
+# Set up project files
 USER root
 RUN mkdir app
-COPY . /app/
 WORKDIR /app/
+
+# Copy pubspec file first to cache dependencies
+COPY pubspec.* /app/
 RUN flutter pub get
+
+# Copy remaining files
+COPY . /app/
+
+# Build the project
 RUN flutter build web
 
 # Record the exposed port
 EXPOSE 5006
 
-# make server startup script executable and start the web server
+# Make server startup script executable and start the web server
 RUN ["chmod", "+x", "server.sh"]
-
 ENTRYPOINT [ "./server.sh"]
-
