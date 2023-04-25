@@ -4,10 +4,7 @@ class User {
   final String lastname;
   final String email;
   final String? password;
-  final String gender;
-  final int height;
-  final int weight;
-  final int? age;
+  final String? birthday;
 
   User(
       {this.uid,
@@ -15,10 +12,7 @@ class User {
       this.lastname = '',
       this.email = '',
       this.password = '',
-      this.gender = 'FEMALE',
-      this.height = 0,
-      this.weight = 0,
-      this.age = 0});
+      this.birthday = ''});
 
   factory User.fromJson(final Map<String, dynamic> json) {
     return User(
@@ -27,10 +21,7 @@ class User {
         lastname: json['lastname'],
         email: json['email'],
         password: json['password'],
-        gender: json['gender'],
-        height: json['height'],
-        weight: json['weight'],
-        age: json['age']);
+        birthday: json['birthday']);
   }
 
   Map<String, dynamic> toJson() => {
@@ -39,9 +30,6 @@ class User {
         'lastname': lastname,
         'email': email,
         'password': password,
-        'gender': gender,
-        'height': height,
-        'weight': weight,
-        'age': age
+        'birthday': birthday
       };
 }
