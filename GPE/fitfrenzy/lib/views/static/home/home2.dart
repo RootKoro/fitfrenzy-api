@@ -41,15 +41,15 @@ class _Home2State extends State<Home2> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(right: 0),
                 child: Align(
                   alignment: Alignment.topRight,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
-                      fixedSize: const Size(150, 20),
+                      fixedSize: const Size(150, 50),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
                     onPressed: () {
@@ -90,15 +90,15 @@ class _Home2State extends State<Home2> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: const EdgeInsets.only(left: 0),
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
-                      fixedSize: const Size(150, 20),
+                      fixedSize: const Size(150, 50),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
                     onPressed: () {

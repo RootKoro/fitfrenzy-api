@@ -161,11 +161,11 @@ class _FitPageState extends State<FitPage> {
                           color: Colors.amber.withOpacity(0.3),
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(
-                        children: [
-                          const Text('Taille',
+                        children: const [
+                          Text('Taille',
                               style: TextStyle(color: Colors.amber)),
-                          Text(user.height.toString(),
-                              style: TextStyle(color: Colors.white)),
+                          Text('175',
+                            style: TextStyle(color: Colors.white)),
                         ],
                       ),
                     ),
@@ -179,13 +179,13 @@ class _FitPageState extends State<FitPage> {
                           color: Colors.amber.withOpacity(0.3),
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Poids',
                             style: TextStyle(color: Colors.amber),
                           ),
                           Text(
-                            user.weight.toString(),
+                            '70',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
