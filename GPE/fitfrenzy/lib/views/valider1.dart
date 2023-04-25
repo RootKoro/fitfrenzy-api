@@ -20,6 +20,7 @@ class _Valider1State extends State<Valider1> {
   late String _effortPhysique = "";
   late String _tempsDisponible = "";
   late String _joursDisponible = "";
+  bool _showError = false;
 
   var listActivitePratiquer = [
     'Sport Collectif',
@@ -65,6 +66,29 @@ class _Valider1State extends State<Valider1> {
     _selectedOptions =
         // ignore: avoid_types_as_parameter_names
         List<bool>.generate(widget.options.length, (int) => false);
+    _activitePratiquer = '';
+    _typeSport = '';
+    _effortPhysique = '';
+    _tempsDisponible = '';
+    _joursDisponible = '';
+  }
+
+  bool _checkDropdownSelections() {
+    return _activitePratiquer != "" &&
+        _typeSport != "" &&
+        _effortPhysique != "" &&
+        _tempsDisponible != "" &&
+        _joursDisponible != "";
+  }
+
+  void handleSubmitSurvey() {
+    if(_checkDropdownSelections()) {
+
+    }else {
+      setState(() {
+        _showError = true;
+      });
+    }   
   }
 
   @override
@@ -87,14 +111,16 @@ class _Valider1State extends State<Valider1> {
         child: Column(
           children: [
             InputDecorator(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(0),
                   ),
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(
+                    color: _showError && _activitePratiquer == "" ? Colors.red : Colors.white
+                  ),
                 ),
-                errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+                errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 16.0),
               ),
               child: SizedBox(
                 height: 40,
@@ -127,8 +153,10 @@ class _Valider1State extends State<Valider1> {
                       setState(
                         () {
                           _activitePratiquer = val!;
+                          _showError = false;
                         },
                       );
+                       _checkDropdownSelections();
                     },
                   ),
                 ),
@@ -136,14 +164,16 @@ class _Valider1State extends State<Valider1> {
             ),
             const SizedBox(height: 10),
             InputDecorator(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(0),
                   ),
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(
+                    color: _showError && _typeSport == "" ? Colors.red : Colors.white
+                  ),
                 ),
-                errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+                errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 16.0),
               ),
               child: SizedBox(
                 height: 40,
@@ -176,8 +206,10 @@ class _Valider1State extends State<Valider1> {
                       setState(
                         () {
                           _typeSport = val!;
+                          _showError = false;
                         },
                       );
+                      _checkDropdownSelections();
                     },
                   ),
                 ),
@@ -185,14 +217,16 @@ class _Valider1State extends State<Valider1> {
             ),
             const SizedBox(height: 10),
             InputDecorator(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(0),
                   ),
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(
+                    color: _showError && _effortPhysique == "" ? Colors.red : Colors.white
+                  ),
                 ),
-                errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+                errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 16.0),
               ),
               child: SizedBox(
                 height: 40,
@@ -225,8 +259,10 @@ class _Valider1State extends State<Valider1> {
                       setState(
                         () {
                           _effortPhysique = val!;
+                          _showError = false;
                         },
                       );
+                      _checkDropdownSelections();
                     },
                   ),
                 ),
@@ -234,14 +270,16 @@ class _Valider1State extends State<Valider1> {
             ),
             const SizedBox(height: 10),
             InputDecorator(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(0),
                   ),
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(
+                    color: _showError && _tempsDisponible == "" ? Colors.red : Colors.white
+                  ),
                 ),
-                errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+                errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 16.0),
               ),
               child: SizedBox(
                 height: 40,
@@ -274,8 +312,10 @@ class _Valider1State extends State<Valider1> {
                       setState(
                         () {
                           _tempsDisponible = val!;
+                          _showError = false;
                         },
                       );
+                      _checkDropdownSelections();
                     },
                   ),
                 ),
@@ -283,14 +323,16 @@ class _Valider1State extends State<Valider1> {
             ),
             const SizedBox(height: 10),
             InputDecorator(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(0),
                   ),
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: BorderSide(
+                    color: _showError && _joursDisponible == "" ? Colors.red : Colors.white
+                  ),
                 ),
-                errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+                errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 16.0),
               ),
               child: SizedBox(
                 height: 40,
@@ -323,13 +365,33 @@ class _Valider1State extends State<Valider1> {
                       setState(
                         () {
                           _joursDisponible = val!;
+                          _showError = false;
                         },
                       );
+                      _checkDropdownSelections();
                     },
                   ),
                 ),
               ),
             ),
+            const SizedBox(height: 20),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                  fixedSize: const Size(170, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                ),
+                onPressed: handleSubmitSurvey,
+                child: const Text("Enregistrer",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20)
           ],
         ),
       ),
