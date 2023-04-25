@@ -10,10 +10,7 @@ export class Customer extends User {
   @Prop({ required: true })
   gender: string;
 
-  @Prop({ type: 'date' })
-  birthday: string;
-
-  @Prop({ required: true })
+  @Prop({ required: false })
   height: number;
 
   @Prop({ required: true })

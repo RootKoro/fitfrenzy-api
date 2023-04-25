@@ -19,7 +19,7 @@ class _SignInState extends State<SignIn> {
   final TextEditingController _lastnameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _birthdayController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
