@@ -2,46 +2,34 @@ class User {
   final String? uid;
   final String firstname;
   final String lastname;
-  final String username;
+  final String email;
   final String? password;
-  final String gender;
-  final int height;
-  final int weight;
-  final int? age;
+  final String? birthday;
 
   User(
       {this.uid,
       this.firstname = '',
       this.lastname = '',
-      this.username = '',
+      this.email = '',
       this.password = '',
-      this.gender = 'FEMALE',
-      this.height = 0,
-      this.weight = 0,
-      this.age = 0});
+      this.birthday = ''});
 
   factory User.fromJson(final Map<String, dynamic> json) {
     return User(
         uid: json['uid'],
         firstname: json['firstname'],
         lastname: json['lastname'],
-        username: json['username'],
+        email: json['email'],
         password: json['password'],
-        gender: json['gender'],
-        height: json['height'],
-        weight: json['weight'],
-        age: json['age']);
+        birthday: json['birthday']);
   }
 
   Map<String, dynamic> toJson() => {
         'uid': uid,
         'firstname': firstname,
         'lastname': lastname,
-        'username': username,
+        'email': email,
         'password': password,
-        'gender': gender,
-        'height': height,
-        'weight': weight,
-        'age': age
+        'birthday': birthday
       };
 }

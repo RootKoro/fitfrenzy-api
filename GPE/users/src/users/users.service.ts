@@ -1,5 +1,5 @@
 
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateCustomerDto } from './dto/create-customers.dto';
@@ -16,13 +16,29 @@ export class UsersService {
   ) {}
 
   async create(createCustomerDto: CreateCustomerDto): Promise<CustomerDocument> {
-    const user = new this.customerModel(createCustomerDto);
-    return user.save();
+    try {
+      const user = new this.customerModel(createCustomerDto);
+      await user.save();
+      return this.customerModel.findOne({ _id : user._id })
+    } catch (error) {
+      if(error.code === 11000) {
+        throw new HttpException('Email already taken', HttpStatus.CONFLICT);
+      }
+      throw error
+    }
   }
 
   async createAdmin(createUserDto: CreateUserDto): Promise<UserDocument> {
-    const user = new this.userModel(createUserDto);
-    return user.save();
+    try {
+      const user = new this.userModel(createUserDto);
+      await user.save();
+      return this.userModel.findOne({ _id : user._id })
+    } catch (error) {
+      if(error.code === 11000) {
+        throw new HttpException("Email already taken", HttpStatus.CONFLICT)
+      }
+      throw error
+    }
   }
 
   async findAll(): Promise<CustomerDocument[]> {
@@ -37,14 +53,14 @@ export class UsersService {
     id: string,
     updateCustomerDto: UpdateCustomerDto
   ): Promise<CustomerDocument> {
-    return this.customerModel.findByIdAndUpdate(id, updateCustomerDto);
+    return this.customerModel.findByIdAndUpdate(id, updateCustomerDto, { new: true });
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     return this.customerModel.findByIdAndRemove(id);
   }
 
   async getUser(query: object ): Promise<Customer> {
-    return this.customerModel.findOne(query);
+    return this.customerModel.findOne(query).select('+password');
   }
 }

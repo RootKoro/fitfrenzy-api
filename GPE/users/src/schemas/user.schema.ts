@@ -8,10 +8,13 @@ export type UserDocument = User & Document;
 })
 export class User {
   @Prop({ required: true })
-  username: string;
+  email: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, select: false })
   password: string;
+
+  @Prop({ required: true, type: 'date' })
+  birthday: Date;
 
   @Prop({ required: true })
   firstname: string;
@@ -20,4 +23,6 @@ export class User {
   lastname: string;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+const UserSchema = SchemaFactory.createForClass(User);
+UserSchema.index({email : 1}, {unique: true})
+export { UserSchema }
