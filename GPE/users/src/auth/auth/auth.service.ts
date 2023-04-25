@@ -2,6 +2,7 @@ import { Injectable, NotAcceptableException } from '@nestjs/common';
 import { UsersService } from '../../users/users.service';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
+import { Customer } from 'src/schemas/customers.schema';
 
 @Injectable()
 export class AuthService {
@@ -10,17 +11,11 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, password: string): Promise<any> {
-    const user = await this.usersService.getUser({ username });
-    if (!user) return null;
+  async validateUser(email: string, password: string): Promise<any> {
+    const user = await this.usersService.getUser({ email });
+    if (!user) { return null }
     const passwordValid = await bcrypt.compare(password, user.password);
-    if (!user) {
-      throw new NotAcceptableException('could not find the user');
-    }
-    if (user && passwordValid) {
-      return user;
-    }
-    return null;
+    return passwordValid ? user : null;
   }
 
   async login(user: Customer & {_id}) {
