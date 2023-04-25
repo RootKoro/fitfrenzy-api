@@ -6,7 +6,7 @@ export type CustomerDocument = Customer & Document;
 @Schema()
 export class Customer {
   @Prop()
-  username: string;
+  email: string;
 
   @Prop()
   password: string;

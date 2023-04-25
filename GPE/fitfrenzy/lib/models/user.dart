@@ -2,7 +2,7 @@ class User {
   final String? uid;
   final String firstname;
   final String lastname;
-  final String username;
+  final String email;
   final String? password;
   final String gender;
   final int height;
@@ -13,7 +13,7 @@ class User {
       {this.uid,
       this.firstname = '',
       this.lastname = '',
-      this.username = '',
+      this.email = '',
       this.password = '',
       this.gender = 'FEMALE',
       this.height = 0,
@@ -25,7 +25,7 @@ class User {
         uid: json['uid'],
         firstname: json['firstname'],
         lastname: json['lastname'],
-        username: json['username'],
+        email: json['email'],
         password: json['password'],
         gender: json['gender'],
         height: json['height'],
@@ -37,7 +37,7 @@ class User {
         'uid': uid,
         'firstname': firstname,
         'lastname': lastname,
-        'username': username,
+        'email': email,
         'password': password,
         'gender': gender,
         'height': height,

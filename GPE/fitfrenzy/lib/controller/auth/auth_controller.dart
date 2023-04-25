@@ -12,7 +12,7 @@ class AuthController {
   static final String _url = dotenv.env['API_USER_URL']!;
 
   Future<void> Login(
-    String username,
+    String email,
     String password,
     Function(Response) callback,
   ) async {
@@ -23,7 +23,7 @@ class AuthController {
     final response =
         await Dio().post('${dotenv.env['API_USER_URL']}/auth/login',
             data: jsonEncode(<String, String>{
-              'username': username,
+              'email': email,
               'password': password,
             }),
             options: Options(headers: headers));
