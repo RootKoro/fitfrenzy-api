@@ -1,43 +1,42 @@
 import {
-    IsNotEmpty,
     IsString,
     IsNumber,
     MaxLength,
-    IsIn
+    IsIn,
+    IsOptional
   } from 'class-validator';
 
   import { CreateUserDto } from './create-user.dto';
 
   export class CreateCustomerDto extends CreateUserDto {
     @IsString()
-    @IsNotEmpty()
     @IsIn(['Male', 'Female'])
-    gender: string;
-
-    @IsNotEmpty()
-    birthday: string;
+    @IsOptional()
+    gender: String;
 
     @IsNumber()
-    @IsNotEmpty()
+    @IsOptional()
     height: number;
 
     @IsNumber()
-    @IsNotEmpty()
+    @IsOptional()
     weight: number;
 
     @IsString()
+    @IsOptional()
     illness: String[];
 
     @IsNumber()
-    @IsNotEmpty()
+    @IsOptional()
     exp: number;
 
     @IsString()
-    @IsNotEmpty()
     @MaxLength(99)
-    level: string;
+    @IsOptional()
+    level: String;
 
     @IsString()
+    @IsOptional()
     preferences: String[];
 
   }

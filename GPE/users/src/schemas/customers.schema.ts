@@ -7,27 +7,29 @@ export type CustomerDocument = Customer & Document;
   timestamps: { createdAt: 'created', updatedAt: 'updated' },
 })
 export class Customer extends User {
-  @Prop({ required: true })
-  gender: string;
+  @Prop({ required: false })
+  gender: String;
 
   @Prop({ required: false })
   height: number;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   weight: number;
 
-  @Prop({ required: true})
+  @Prop({ required: false})
   illness: String[];
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   exp: number;
 
-  @Prop({ required: true })
-  level: string;
+  @Prop({ required: false })
+  level: String;
 
-  @Prop({ required: true})
+  @Prop({ required: false})
   preferences: String[];
 
 }
 
-export const CustomerSchema = SchemaFactory.createForClass(Customer);
+const CustomerSchema = SchemaFactory.createForClass(Customer);
+CustomerSchema.index({email : 1}, {unique: true})
+export { CustomerSchema }
