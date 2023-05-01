@@ -23,7 +23,7 @@ class _Home2State extends State<Home2> {
             padding: const EdgeInsets.only(
               top: 120,
             ),
-            child: Image.asset("assets/images/img_acceuil.jpng"),
+            child: Image.asset("assets/images/img_acceuil.png"),
           ),
           const SizedBox(
             height: 50,
