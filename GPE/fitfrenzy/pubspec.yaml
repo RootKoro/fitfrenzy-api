@@ -46,7 +46,7 @@ dependencies:
   enhance_stepper: ^0.1.1
   table_calendar: ^3.0.9
   carousel_slider: ^4.2.1
-  easy_stepper: ^0.3.1
+  easy_stepper: ^0.5.0
   animate_do: ^3.0.2
   #table_calendar: ^3.0.9
   intl: ^0.18.0
@@ -58,6 +58,9 @@ dependencies:
   line_awesome_flutter: ^2.0.0
   animated_theme_switcher: ^2.0.8
   flutter_screenutil: ^5.7.0
+  video_player: ^2.6.1
+  chewie: ^1.4.0
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter

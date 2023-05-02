@@ -16,6 +16,14 @@ import '../../widgets/fit_list_tile.dart';
 import '../../models/sport.dart';
 import '../auth/login.dart';
 import '../sport/profileScreen.dart';
+import '../static/home/VideoPlayerWidget.dart';
+import 'package:video_player/video_player.dart';
+
+import '../../../controller/user/user_controller.dart';
+import '../../../controller/hour_controller.dart';
+import '../../../models/user.dart';
+import '../../../widgets/fit_list_tile.dart';
+import '../../../models/sport.dart';
 
 // ignore: must_be_immutable
 class FitPage extends StatefulWidget {
@@ -30,6 +38,78 @@ class _FitPageState extends State<FitPage> {
   RxInt minute = DateTime.now().minute.obs;
   RxInt second = DateTime.now().second.obs;
 
+  late VideoPlayerController videoControllerService;
+  late VideoPlayerController videoControllerReception;
+  late VideoPlayerController videoControllerPasse;
+
+  //determines when the program started
+  bool buttonStartEnabled = false;
+
+  bool isFirstVideoPlaying = false;
+  bool isFirstVideoFinish = false;
+
+  bool isSecondVideoPlaying = false;
+  bool isSecondVideoFinish = false;
+
+  bool isThirdVideoPlaying = false;
+  bool isThirdVideoFinish = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.userId != null) _fetchedUser(widget.userId);
+
+    //Declaration of the first video and start of the second
+    videoControllerService =
+        VideoPlayerController.asset('../../../assets/vidéos/service.mp4');
+
+    videoControllerService.addListener(() {
+      if (videoControllerService.value.position ==
+          videoControllerService.value.duration) {
+        videoControllerReception.play();
+        setState(() {
+          isFirstVideoFinish = true;
+          isSecondVideoPlaying = true;
+        });
+      }
+    });
+
+    //Declaration of the second video and start of the third
+    videoControllerReception =
+        VideoPlayerController.asset('../../../assets/vidéos/reception.mp4');
+
+    videoControllerReception.addListener(() {
+      if (videoControllerReception.value.position ==
+          videoControllerReception.value.duration) {
+        videoControllerPasse.play();
+        setState(() {
+          isSecondVideoFinish = true;
+          isThirdVideoPlaying = true;
+        });
+      }
+    });
+
+    //Declaration of the third video
+    videoControllerPasse =
+        VideoPlayerController.asset('../../../assets/vidéos/passe.mp4');
+
+    videoControllerPasse.addListener(() {
+      if (videoControllerPasse.value.position ==
+          videoControllerPasse.value.duration) {
+        setState(() {
+          isThirdVideoFinish = true;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    videoControllerService.dispose();
+    videoControllerReception.dispose();
+    videoControllerPasse.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,213 +162,280 @@ class _FitPageState extends State<FitPage> {
                   ),
                 ],
               ),
-             
+              const CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage('assets/images/th.png'),
+              ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
+                padding: const EdgeInsets.only(top: 5),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Sports()),
-                        );
-                      },
-                      child: const Text('Trouve ton sport',
-                          style: TextStyle(color: Colors.white)),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Programme()),
-                        );
-                      },
-                      child: const Text(
-                        'Mon programme',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
+                    const Text('Tom CLEMENCON',
+                        style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 1),
+                padding: const EdgeInsets.fromLTRB(0, 0, 800, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Football',
+                        style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       height: 1,
-                      width: MediaQuery.of(context).size.width / 2.5,
+                      width: MediaQuery.of(context).size.width / 1.5,
                       color: Colors.white,
                     ),
-                    Container(
-                      height: 1,
-                      width: MediaQuery.of(context).size.width / 2.5,
-                      color: Colors.amber,
-                    )
                   ],
                 ),
               ),
+
+              //Play button
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 100,
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: Colors.amber.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Column(
-                        children: const [
-                          Text('Taille',
-                              style: TextStyle(color: Colors.amber)),
-                          Text('175',
-                            style: TextStyle(color: Colors.white)),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: 100,
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: Colors.amber.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Column(
-                        children: const [
-                          Text(
-                            'Poids',
-                            style: TextStyle(color: Colors.amber),
-                          ),
-                          Text(
-                            '70',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              CircularStepProgressIndicator(
-                totalSteps: 100,
-                currentStep: 74,
-                stepSize: 10,
-                selectedColor: Colors.amber,
-                unselectedColor: Colors.black,
-                padding: 0,
-                width: 150,
-                height: 150,
-                selectedStepSize: 15,
-                roundedCap: (_, __) => true,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Text('Course', style: TextStyle(color: Colors.amber)),
-                    GetBuilder<HourController>(
-                      init: HourController(),
-                      initState: (_) {},
-                      builder: (contoller) {
-                        return Text(
-                            '${HourController().hour.value}:${HourController().minute.value}:${HourController().second.value}',
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 20));
-                      },
-                    ),
-                    const Icon(Icons.motorcycle_outlined, color: Colors.amber)
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Row(
-                  children: [
-                    EasyStepper(
-                      activeStep: 3,
-                      lineLength: 20,
-                      lineColor: Colors.grey,
-                      lineSpace: 3,
-                      lineType: LineType.normal,
-                      unreachedStepIconColor: Colors.grey[300],
-                      stepShape: StepShape.circle,
-                      //  stepBorderRadius: 15,
-                      borderThickness: 5,
-                      defaultStepBorderType: BorderType.normal,
-                      activeStepBorderColor: Colors.amber,
-                      disableScroll: true,
-                      //  padding: 20,
-                      alignment: Alignment.centerLeft,
-                      direction: Axis.vertical,
-                      stepRadius: 25,
-                      showTitle: false,
-                      finishedStepBorderColor: Colors.grey,
-
-                      finishedStepBackgroundColor: Colors.transparent,
-                      activeStepIconColor: Colors.amber,
-
-                      finishedStepIconColor: Colors.grey[300],
-                      // loadingAnimation: 'assets/cat.jpg',
-                      steps: const [
-                        EasyStep(
-                            icon: Icon(
-                              Icons.directions_run_sharp,
-                            ),
-                            title: 'Order Placed',
-                            lineText: 'Courses'),
-                        EasyStep(
-                          icon: Icon(
-                            Icons.motorcycle_outlined,
-                          ),
-                          title: 'Preparing',
-                        ),
-                        EasyStep(
-                          icon: Icon(
-                            Icons.ac_unit_rounded,
-                          ),
-                          title: 'Shipping',
-                        ),
-                        EasyStep(
-                          icon: Icon(
-                            Icons.door_back_door,
-                          ),
-                          title: 'On The Way',
-                        ),
+                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (isFirstVideoPlaying == false &&
+                          buttonStartEnabled == false) {
+                        isFirstVideoPlaying = !isFirstVideoPlaying;
+                        videoControllerService.play();
+                        buttonStartEnabled = true;
+                      }
+                    });
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black),
+                  ),
+                  child: CircularStepProgressIndicator(
+                    totalSteps: 100,
+                    currentStep: 100,
+                    stepSize: 10,
+                    selectedColor: Colors.amber,
+                    unselectedColor: Colors.black,
+                    padding: 0,
+                    width: 150,
+                    height: 150,
+                    selectedStepSize: 15,
+                    roundedCap: (_, __) => true,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text('Démarrer',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20)),
                       ],
                     ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          FitListTile(
-                              text: 'Courses',
-                              subtitle: '30 min - cardio',
-                              icon: Icons.check_circle_outline,
-                              iconColor: Colors.amber),
-                          FitListTile(
-                              text: 'Vélo',
-                              subtitle: '30 min - cardio',
-                              icon: Icons.pause_circle_outline_outlined,
-                              iconColor:
-                                  const Color.fromARGB(255, 134, 129, 129)),
-                          FitListTile(
-                            text: 'Push-Up',
-                            subtitle: '20 min - Haut du corps',
-                            icon: Icons.play_circle_outline_outlined,
-                            iconColor: const Color.fromARGB(255, 134, 129, 129),
-                          ),
-                        ],
-                      ),
-                    )
+                  ),
+                ),
+              ),
+
+              //Program
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 1120, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Votre programme',
+                        style: TextStyle(color: Colors.amber)),
                   ],
                 ),
+              ),
+
+              //placement of the first video
+              Expanded(
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  SizedBox(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 30),
+                      child: Container(
+                        height: 150,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 3),
+                        ),
+                        child: VideoPlayerWidget(
+                            videoControllerService, false, false),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 800),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 30, 20, 0),
+                            child: const Text('Service',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(2, 0, 0, 130),
+                            child: const Text('10 minutes',
+                                style: TextStyle(color: Colors.grey)),
+                          ),
+                        ]),
+                  ),
+                  //treatment play/pause first video
+                  isFirstVideoFinish
+                      ? Icon(Icons.check_circle_outline, color: Colors.amber)
+                      : InkWell(
+                          onTap: () {
+                            setState(() {
+                              isFirstVideoPlaying = !isFirstVideoPlaying;
+                              if (isFirstVideoPlaying) {
+                                videoControllerService.play();
+                              } else {
+                                videoControllerService.pause();
+                              }
+                            });
+                          },
+                          child: Icon(
+                            isFirstVideoPlaying
+                                ? Icons.pause_circle_outline_outlined
+                                : Icons.play_circle_outline_outlined,
+                            color: isFirstVideoPlaying
+                                ? Colors.green
+                                : Colors.grey,
+                          ),
+                        )
+                ]),
+              ),
+
+              //placement of the second video
+              Expanded(
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  SizedBox(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 30),
+                      child: Container(
+                        height: 150,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 3),
+                        ),
+                        child: VideoPlayerWidget(
+                            videoControllerReception, false, false),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 800),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 30, 2, 0),
+                            child: const Text('Reception',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(2, 0, 0, 130),
+                            child: const Text('10 minutes',
+                                style: TextStyle(color: Colors.grey)),
+                          ),
+                        ]),
+                  ),
+
+                  //treatment play/pause second video
+                  isSecondVideoFinish
+                      ? Icon(Icons.check_circle_outline, color: Colors.amber)
+                      : InkWell(
+                          onTap: () {
+                            setState(() {
+                              isSecondVideoPlaying = !isSecondVideoPlaying;
+                              if (isSecondVideoPlaying) {
+                                videoControllerReception.play();
+                              } else {
+                                videoControllerReception.pause();
+                              }
+                            });
+                          },
+                          child: Icon(
+                            isSecondVideoPlaying
+                                ? Icons.pause_circle_outline_outlined
+                                : Icons.play_circle_outline_outlined,
+                            color: isSecondVideoPlaying
+                                ? Colors.green
+                                : Colors.grey,
+                          ),
+                        ),
+                ]),
+              ),
+
+              //placement of the third video
+              Expanded(
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  SizedBox(
+                    child: Padding(
+                        padding: const EdgeInsets.only(right: 30),
+                        child: Container(
+                          height: 150,
+                          width: 300,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey, width: 3),
+                          ),
+                          child: VideoPlayerWidget(
+                              videoControllerPasse, false, false),
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 800),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 30, 25, 0),
+                            child: const Text('Passe',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(2, 0, 0, 130),
+                            child: const Text('10 minutes',
+                                style: TextStyle(color: Colors.grey)),
+                          ),
+                        ]),
+                  ),
+
+                  //treatment play/pause third video
+                  isThirdVideoFinish
+                      ? Icon(Icons.check_circle_outline, color: Colors.amber)
+                      : InkWell(
+                          onTap: () {
+                            setState(() {
+                              isThirdVideoPlaying = !isThirdVideoPlaying;
+                              if (isThirdVideoPlaying) {
+                                videoControllerPasse.play();
+                              } else {
+                                videoControllerPasse.pause();
+                              }
+                            });
+                          },
+                          child: Icon(
+                            isThirdVideoPlaying
+                                ? Icons.pause_circle_outline_outlined
+                                : Icons.play_circle_outline_outlined,
+                            color: isThirdVideoPlaying
+                                ? Colors.green
+                                : Colors.grey,
+                          ),
+                        )
+                ]),
               ),
             ],
           ),
