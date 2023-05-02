@@ -9,3 +9,69 @@ docker-compose up
 docker-compose build --build-arg ARCH=amd64
 docker-compose up
 ```
+
+--------------------------------------------------------------------------------
+
+######################
+####### Docker #######
+######################
+
+docker-compose build
+docker-compose up
+docker-compose up --build
+
+Problèmes rencontrées (Windows)
+###############################
+
+docker exec ./server.sh: no such file or directory
+
+    ==> Modifier l'encodage dans VSCode "CRLF -> LF" sur le fichier "server.sh"
+
+
+--------------------------------------------------------------------------------
+
+######################
+####### Local #######
+######################
+
+Lancer flutter
+##############
+
+flutter run ==>  exécute l'application Flutter sur un périphérique ou un émulateur (iOS, Android, Web, etc).
+
+
+Lancer les microservices 
+########################
+
+cd sports
+  npm install
+  npm run start
+
+cd statistiques
+  npm install
+  npm run start
+
+cd users
+  npm install
+  npm run start
+
+cd questionnary
+  npm install
+  npm run start
+
+cd haproxy
+  npm install
+  npm run start
+
+cd sport-program
+  npm install
+  npm run start
+
+
+MAJ des packages
+################
+
+flutter pub get                           ==> installe les dépendances de packages spécifiées dans le fichier pubspec.yaml.
+flutter pub upgrade                       ==> met à jour les dépendances de packages vers leurs dernières versions compatibles.
+flutter pub outdated                      ==> afficher une liste des packages qui ont des mises à jour disponibles. 
+flutter pub upgrade --major-versions      ==> met à jour les packages vers leurs dernières versions majeures compatibles.
