@@ -18,6 +18,7 @@ import '../auth/login.dart';
 import '../sport/profileScreen.dart';
 import '../static/home/VideoPlayerWidget.dart';
 import 'package:video_player/video_player.dart';
+import 'dart:async';
 
 import '../../../controller/user/user_controller.dart';
 import '../../../controller/hour_controller.dart';
@@ -37,6 +38,15 @@ class _FitPageState extends State<FitPage> {
   RxInt hour = DateTime.now().hour.obs;
   RxInt minute = DateTime.now().minute.obs;
   RxInt second = DateTime.now().second.obs;
+  int secondsRemainingGlobalTimer = 30 * 60; // 30 minutes in seconds
+  int secondsRemainingFirstExercise = 10 * 60; // 10 minutes in seconds
+  int secondsRemainingSecondExercise = 10 * 60; // 10 minutes in seconds
+  int secondsRemainingThirdExercise = 10 * 60; // 10 minutes in seconds
+
+  Timer? timerGlobal;
+  Timer? timerFirstExercise;
+  Timer? timerSecondExercise;
+  Timer? timerThirdExercise;
 
   late VideoPlayerController videoControllerService;
   late VideoPlayerController videoControllerReception;
@@ -45,6 +55,7 @@ class _FitPageState extends State<FitPage> {
   //determines when the program started
   bool buttonStartEnabled = false;
 
+  //Describe the state of video
   bool isFirstVideoPlaying = false;
   bool isFirstVideoFinish = false;
 
@@ -53,6 +64,12 @@ class _FitPageState extends State<FitPage> {
 
   bool isThirdVideoPlaying = false;
   bool isThirdVideoFinish = false;
+
+  String buttonText = "Démarrer";
+
+  bool showIconFisrtVideo = false;
+  bool showIconSecondVideo = false;
+  bool showIconThirdVideo = false;
 
   @override
   void initState() {
@@ -70,6 +87,7 @@ class _FitPageState extends State<FitPage> {
         setState(() {
           isFirstVideoFinish = true;
           isSecondVideoPlaying = true;
+          showIconSecondVideo = true;
         });
       }
     });
@@ -85,6 +103,7 @@ class _FitPageState extends State<FitPage> {
         setState(() {
           isSecondVideoFinish = true;
           isThirdVideoPlaying = true;
+          showIconThirdVideo = true;
         });
       }
     });
@@ -101,6 +120,94 @@ class _FitPageState extends State<FitPage> {
         });
       }
     });
+  }
+
+  String get timerText {
+    int minutes = (secondsRemainingGlobalTimer / 60).floor();
+    int seconds = secondsRemainingGlobalTimer % 60;
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  void startTimer() {
+    timerGlobal = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (secondsRemainingGlobalTimer > 0) {
+          secondsRemainingGlobalTimer--;
+        } else {
+          timerGlobal?.cancel();
+        }
+      });
+    });
+  }
+
+  void stopTimer() {
+    timerGlobal?.cancel();
+  }
+
+  String get timerTextFirstVideo {
+    int minutes = (secondsRemainingFirstExercise / 60).floor();
+    int seconds = secondsRemainingFirstExercise % 60;
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  void startTimerFirstVideo() {
+    timerFirstExercise = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (secondsRemainingFirstExercise > 0) {
+          secondsRemainingFirstExercise--;
+        } else {
+          timerFirstExercise?.cancel();
+        }
+      });
+    });
+  }
+
+  void stopTimerFirstVideo() {
+    timerFirstExercise?.cancel();
+  }
+
+  String get timerTextSecondVideo {
+    int minutes = (secondsRemainingSecondExercise / 60).floor();
+    int seconds = secondsRemainingSecondExercise % 60;
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  void startTimerSecondVideo() {
+    timerSecondExercise = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (secondsRemainingSecondExercise > 0) {
+          secondsRemainingSecondExercise--;
+        } else {
+          timerSecondExercise?.cancel();
+        }
+      });
+    });
+  }
+
+  void stopTimerSecondVideo() {
+    timerSecondExercise?.cancel();
+  }
+
+  String get timerTextThirdVideo {
+    int minutes = (secondsRemainingThirdExercise / 60).floor();
+    int seconds = secondsRemainingThirdExercise % 60;
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+  }
+
+  void startTimerThirdVideo() {
+    timerThirdExercise = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (secondsRemainingThirdExercise > 0) {
+          secondsRemainingThirdExercise--;
+        } else {
+          timerThirdExercise?.cancel();
+        }
+      });
+    });
+  }
+
+  void stopTimerThirdVideo() {
+    timerThirdExercise?.cancel();
   }
 
   @override
@@ -211,6 +318,9 @@ class _FitPageState extends State<FitPage> {
                         isFirstVideoPlaying = !isFirstVideoPlaying;
                         videoControllerService.play();
                         buttonStartEnabled = true;
+                        buttonText = '';
+                        showIconFisrtVideo = true;
+                        startTimer();
                       }
                     });
                   },
@@ -220,7 +330,8 @@ class _FitPageState extends State<FitPage> {
                   ),
                   child: CircularStepProgressIndicator(
                     totalSteps: 100,
-                    currentStep: 100,
+                    currentStep:
+                        ((secondsRemainingGlobalTimer / 1800) * 100).toInt(),
                     stepSize: 10,
                     selectedColor: Colors.amber,
                     unselectedColor: Colors.black,
@@ -233,9 +344,20 @@ class _FitPageState extends State<FitPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text('Démarrer',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20)),
+                        Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                            child: Text(
+                              'Démarrer',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: Text(
+                            secondsRemainingGlobalTimer > 0 ? timerText : '',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -290,28 +412,31 @@ class _FitPageState extends State<FitPage> {
                         ]),
                   ),
                   //treatment play/pause first video
-                  isFirstVideoFinish
-                      ? Icon(Icons.check_circle_outline, color: Colors.amber)
-                      : InkWell(
-                          onTap: () {
-                            setState(() {
-                              isFirstVideoPlaying = !isFirstVideoPlaying;
-                              if (isFirstVideoPlaying) {
-                                videoControllerService.play();
-                              } else {
-                                videoControllerService.pause();
-                              }
-                            });
-                          },
-                          child: Icon(
-                            isFirstVideoPlaying
-                                ? Icons.pause_circle_outline_outlined
-                                : Icons.play_circle_outline_outlined,
-                            color: isFirstVideoPlaying
-                                ? Colors.green
-                                : Colors.grey,
-                          ),
-                        )
+                  if (showIconFisrtVideo)
+                    isFirstVideoFinish
+                        ? Icon(Icons.check_circle_outline, color: Colors.amber)
+                        : InkWell(
+                            onTap: () {
+                              setState(() {
+                                isFirstVideoPlaying = !isFirstVideoPlaying;
+                                if (isFirstVideoPlaying) {
+                                  videoControllerService.play();
+                                  startTimer();
+                                } else {
+                                  videoControllerService.pause();
+                                  stopTimer();
+                                }
+                              });
+                            },
+                            child: Icon(
+                              isFirstVideoPlaying
+                                  ? Icons.pause_circle_outline_outlined
+                                  : Icons.play_circle_outline_outlined,
+                              color: isFirstVideoPlaying
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                          )
                 ]),
               ),
 
@@ -352,28 +477,31 @@ class _FitPageState extends State<FitPage> {
                   ),
 
                   //treatment play/pause second video
-                  isSecondVideoFinish
-                      ? Icon(Icons.check_circle_outline, color: Colors.amber)
-                      : InkWell(
-                          onTap: () {
-                            setState(() {
-                              isSecondVideoPlaying = !isSecondVideoPlaying;
-                              if (isSecondVideoPlaying) {
-                                videoControllerReception.play();
-                              } else {
-                                videoControllerReception.pause();
-                              }
-                            });
-                          },
-                          child: Icon(
-                            isSecondVideoPlaying
-                                ? Icons.pause_circle_outline_outlined
-                                : Icons.play_circle_outline_outlined,
-                            color: isSecondVideoPlaying
-                                ? Colors.green
-                                : Colors.grey,
+                  if (showIconSecondVideo)
+                    isSecondVideoFinish
+                        ? Icon(Icons.check_circle_outline, color: Colors.amber)
+                        : InkWell(
+                            onTap: () {
+                              setState(() {
+                                isSecondVideoPlaying = !isSecondVideoPlaying;
+                                if (isSecondVideoPlaying) {
+                                  videoControllerReception.play();
+                                  startTimer();
+                                } else {
+                                  videoControllerReception.pause();
+                                  stopTimer();
+                                }
+                              });
+                            },
+                            child: Icon(
+                              isSecondVideoPlaying
+                                  ? Icons.pause_circle_outline_outlined
+                                  : Icons.play_circle_outline_outlined,
+                              color: isSecondVideoPlaying
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
                           ),
-                        ),
                 ]),
               ),
 
@@ -413,28 +541,31 @@ class _FitPageState extends State<FitPage> {
                   ),
 
                   //treatment play/pause third video
-                  isThirdVideoFinish
-                      ? Icon(Icons.check_circle_outline, color: Colors.amber)
-                      : InkWell(
-                          onTap: () {
-                            setState(() {
-                              isThirdVideoPlaying = !isThirdVideoPlaying;
-                              if (isThirdVideoPlaying) {
-                                videoControllerPasse.play();
-                              } else {
-                                videoControllerPasse.pause();
-                              }
-                            });
-                          },
-                          child: Icon(
-                            isThirdVideoPlaying
-                                ? Icons.pause_circle_outline_outlined
-                                : Icons.play_circle_outline_outlined,
-                            color: isThirdVideoPlaying
-                                ? Colors.green
-                                : Colors.grey,
-                          ),
-                        )
+                  if (showIconThirdVideo)
+                    isThirdVideoFinish
+                        ? Icon(Icons.check_circle_outline, color: Colors.amber)
+                        : InkWell(
+                            onTap: () {
+                              setState(() {
+                                isThirdVideoPlaying = !isThirdVideoPlaying;
+                                if (isThirdVideoPlaying) {
+                                  videoControllerPasse.play();
+                                  startTimer();
+                                } else {
+                                  videoControllerPasse.pause();
+                                  stopTimer();
+                                }
+                              });
+                            },
+                            child: Icon(
+                              isThirdVideoPlaying
+                                  ? Icons.pause_circle_outline_outlined
+                                  : Icons.play_circle_outline_outlined,
+                              color: isThirdVideoPlaying
+                                  ? Colors.green
+                                  : Colors.grey,
+                            ),
+                          )
                 ]),
               ),
             ],
