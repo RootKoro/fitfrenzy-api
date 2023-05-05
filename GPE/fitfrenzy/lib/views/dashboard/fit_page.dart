@@ -15,7 +15,6 @@ import '../../models/user.dart';
 import '../../widgets/fit_list_tile.dart';
 import '../../models/sport.dart';
 import '../auth/login.dart';
-import '../sport/profile.dart';
 import '../sport/profileScreen.dart';
 
 // ignore: must_be_immutable
