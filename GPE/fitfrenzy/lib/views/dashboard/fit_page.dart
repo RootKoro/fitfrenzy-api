@@ -74,7 +74,7 @@ class _FitPageState extends State<FitPage> {
   @override
   void initState() {
     super.initState();
-    if (widget.userId != null) _fetchedUser(widget.userId);
+    //if (widget.userId != null) _fetchedUser(widget.userId);
 
     //Declaration of the first video and start of the second
     videoControllerService =
@@ -278,7 +278,7 @@ class _FitPageState extends State<FitPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Tom CLEMENCON',
+                    const Text('Akram test',
                         style: TextStyle(color: Colors.white)),
                   ],
                 ),
