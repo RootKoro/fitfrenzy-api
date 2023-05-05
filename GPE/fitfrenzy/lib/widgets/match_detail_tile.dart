@@ -1,3 +1,4 @@
+import 'package:fitfrenzy/models/soccer.dart';
 import 'package:fitfrenzy/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,17 +10,15 @@ import '../models/team.dart';
 class MatchDetailTile extends StatelessWidget {
   MatchDetailTile({
     super.key,
-    required this.team1,
-    required this.team2,
+    required this.match,
   });
-  Team team1;
-  Team team2;
+  SoccerMatch match;
   var focus = false.obs;
   @override
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
     return Container(
-      height: 200,
+      height: 240,
       width: 200,
       child: Stack(
         children: [
@@ -35,8 +34,8 @@ class MatchDetailTile extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             // ignore: avoid_unnecessary_containers
             child: Container(
-              // height: 200,
-              // width: 200,
+               /* height: 200,
+               width: 200, */
 
               child: GetBuilder<HourController>(
                 builder: (controller) {
@@ -46,14 +45,18 @@ class MatchDetailTile extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Yesterday ${controller.hour.value}:${controller.minute.value} PM',
+                          '${controller.hour.value}:${controller.minute.value} PM',
                           style: const TextStyle(color: Colors.grey),
                         ),
                       ),
+                      Image.network(
+                        match.home.logo,
+                        width: 40
+                      ),
                       TeamTile(
-                          teamName: team1.teamName,
-                          teamLogo: team1.teamLogo,
-                          score: team1.score),
+                          teamName: match.home.name,
+                          teamLogo: match.home.logo,
+                          score: match.goal.home),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -70,9 +73,9 @@ class MatchDetailTile extends StatelessWidget {
                         ],
                       ),
                       TeamTile(
-                          teamName: team2.teamName,
-                          teamLogo: team2.teamLogo,
-                          score: team2.score),
+                          teamName: match.away.name,
+                          teamLogo: match.away.logo,
+                          score: match.goal.away),
                     ],
                   );
                 },
@@ -99,19 +102,23 @@ class TeamTile extends StatelessWidget {
       required this.teamName,
       required this.teamLogo,
       required this.score});
-  String teamName, score;
+  String teamName;
+  int? score;
   String teamLogo;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(8),
       child: ListTile(
         style: ListTileStyle.list,
         title:
             CustomText(text: teamName, fontWeight: FontWeight.normal, size: 15),
-        leading: Image.asset(teamLogo),
+        leading: Image.network(
+          teamLogo,
+          width: 40
+        ),
         trailing:
-            CustomText(text: score, fontWeight: FontWeight.bold, size: 18),
+            CustomText(text: "$score", fontWeight: FontWeight.bold, size: 18),
       ),
     );
   }

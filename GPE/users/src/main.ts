@@ -1,13 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe, LogLevel } from '@nestjs/common';
 import { useContainer } from 'class-validator';
 import { swaggerConfig } from './swagger';
 
 async function bootstrap() {
-  const appOptions = {cors: true};
-  const app = await NestFactory.create(AppModule, appOptions);
-
+  const app = await NestFactory.create(AppModule, {
+    logger : ['verbose'],
+    cors: true
+  });
+  const logger = new Logger();
+  app.useLogger(logger);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   swaggerConfig(app);
 

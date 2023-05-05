@@ -7,49 +7,33 @@ import 'package:fitfrenzy/views/sport/sports.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../../controller/user/user_controller.dart';
 import '../../controller/hour_controller.dart';
 import '../../models/user.dart';
 import '../../widgets/fit_list_tile.dart';
 import '../../models/sport.dart';
+import '../auth/login.dart';
+import '../sport/profileScreen.dart';
 
 // ignore: must_be_immutable
 class FitPage extends StatefulWidget {
-  final String? userId;
-  FitPage({super.key, this.userId});
+  FitPage({super.key});
 
   @override
   State<FitPage> createState() => _FitPageState();
 }
 
 class _FitPageState extends State<FitPage> {
-  User user = User();
   RxInt hour = DateTime.now().hour.obs;
   RxInt minute = DateTime.now().minute.obs;
   RxInt second = DateTime.now().second.obs;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    if (widget.userId != null) _fetchedUser(widget.userId);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 90, 72, 17),
-        centerTitle: true,
-        title: const Text("Accueil"),
-        /* leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-          onPressed: () => Get.off(
-            const AppDashboardPage(),
-          ),
-        ), */
-      ),
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -59,18 +43,21 @@ class _FitPageState extends State<FitPage> {
           child: Column(
             children: [
               Transform.rotate(
-                  angle: 6,
-                  origin: const Offset(0, 0),
-                  child: const Text(
-                    'FITFRENZY',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.amber),
-                  )),
+                angle: 6,
+                origin: const Offset(0, 0),
+                child: const Text(
+                  'FITFRENZY',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.amber),
+                )
+              ),
+              SizedBox(height: 32.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButton(
                     onPressed: () {
@@ -92,13 +79,10 @@ class _FitPageState extends State<FitPage> {
                     },
                     icon: const Icon(Icons.emoji_emotions_outlined,
                         color: Colors.white, size: 30),
-                  )
+                  ),
                 ],
               ),
-              const CircleAvatar(
-                radius: 40,
-                backgroundImage: AssetImage('assets/images/th.png'),
-              ),
+             
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -313,9 +297,4 @@ class _FitPageState extends State<FitPage> {
     );
   }
 
-  void _fetchedUser(id) async {
-    await UserController()
-        .GetUserById(id)
-        .then((usr) => setState(() => user = usr!));
-  }
 }
