@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../models/user.dart';
 
 class AuthController {
@@ -10,6 +11,7 @@ class AuthController {
   //     : dotenv.env['API_PROXY_URL']!;
 
   static final String _url = dotenv.env['API_USER_URL']!;
+  final storage = new FlutterSecureStorage();
 
   Future<void> Login(
     String email,
@@ -26,6 +28,7 @@ class AuthController {
               'password': password,
             }),
             options: Options(headers: headers));
+      await storage.write(key: 'jwt', value: response.data['access_token']);
       callback(response);
     } on DioError catch (e) {
       if (e.response?.statusCode == 401) {
@@ -76,5 +79,10 @@ class AuthController {
       }
       
     }
+  }
+
+  Future<void> logout() async {
+    String? token = await storage.read(key: 'jwt');
+    await storage.delete(key: 'jwt');
   }
 }

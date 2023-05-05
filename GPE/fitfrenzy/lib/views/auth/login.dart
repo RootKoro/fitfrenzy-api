@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:fitfrenzy/controller/auth/auth_controller.dart';
 import 'package:fitfrenzy/models/user.dart';
+import 'package:fitfrenzy/views/dashboard/appDashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:dio/dio.dart';
 
@@ -62,7 +64,7 @@ class _LoginState extends State<Login> {
                     controller: _emailController,
                     decoration: const InputDecoration(
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.white,         
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(2),
@@ -77,6 +79,7 @@ class _LoginState extends State<Login> {
                       hintStyle: TextStyle(
                         fontSize: 15,
                         fontFamily: 'Open',
+                        color: Colors.black38
                       ),
                       errorStyle: TextStyle(
                         color: Colors.red, // Set the color of the error message
@@ -150,7 +153,7 @@ class _LoginState extends State<Login> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amber,
-                    fixedSize: const Size(170, 20),
+                    fixedSize: const Size(170, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25.0),
                     ),
@@ -163,18 +166,17 @@ class _LoginState extends State<Login> {
                         _emailController.text,
                         _passwordController.text,
                         context,
-                        (response) => {
-                          if (response.statusCode == 201)
-                            {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        Home3(userId: response.data['id'])),
-                              )
-                            } else{
-                              print("Error")
-                            }
+                        (response) async {
+                          if (response.statusCode == 201) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AppDashboardPage()
+                              ),
+                            );
+                          } else{
+                            print("Error");
+                          }
                         }
                       );
                     }
