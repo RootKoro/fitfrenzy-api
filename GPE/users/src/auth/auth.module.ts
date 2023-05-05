@@ -16,7 +16,7 @@ import { jwtConstants } from "./constants"
 @Module({
   imports: [UsersModule, PassportModule, JwtModule.register({
     secret: jwtConstants.secret,
-    signOptions: { expiresIn: '3600s' },
+    signOptions: { expiresIn: '86400s' },
   }), MongooseModule.forFeature([{ name: Customer.name, schema: CustomerSchema }, { name: User.name, schema: UserSchema }])],
   providers: [UsersService, AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
