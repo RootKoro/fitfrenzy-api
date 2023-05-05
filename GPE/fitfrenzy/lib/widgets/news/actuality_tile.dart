@@ -92,9 +92,6 @@ class ProfilWidget extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         child: Stack(
           children: [
-            const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/th.png'),
-            ),
             Positioned(
               left: 24,
               bottom: 13,

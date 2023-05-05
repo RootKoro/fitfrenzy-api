@@ -1,5 +1,5 @@
 import 'package:fitfrenzy/views/match_details_page.dart';
-import 'package:fitfrenzy/widgets/news/actuality_tile.dart';
+import 'package:fitfrenzy/views/basketball_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:group_button/group_button.dart';
@@ -20,7 +20,7 @@ class ActualityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: customAppBar(context, 'Explore', FontWeight.bold),
+      appBar: customAppBar(context, 'Actualités', FontWeight.bold),
       // ignore: avoid_unnecessary_containers
       body: Container(
           // height: MediaQuery.of(context).size.height,
@@ -90,19 +90,20 @@ class ActualityPage extends StatelessWidget {
                         direction: Axis.horizontal,
                         groupingType: GroupingType.row),
                     buttons: const [
-                      'All',
                       'Football',
-                      'Volleyball',
-                      'Basketball'
+                      'Basketball',
+                      'Tout'
                     ],
                   ),
                 );
               },
             ),
+            // if (hourController.checker.value == 2)
+            //   //const AllActuality()
             if (hourController.checker.value == 0)
-              const AllActuality()
-            else if (hourController.checker.value == 1)
               MatchDetailPage()
+            else if (hourController.checker.value == 1)
+              BasketballDetailPage()
           ],
         ),
       )),

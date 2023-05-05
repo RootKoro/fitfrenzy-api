@@ -38,7 +38,7 @@ class _Home3State extends State<Home3> {
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Image.asset(
-            "assets/images/acceuil.png",
+            "images/fitfrenzy_logo.png",
           ),
         ),
       ),

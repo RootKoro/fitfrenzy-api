@@ -10,7 +10,7 @@ import '../news/actuality_tile.dart';
 PreferredSizeWidget customAppBar(
     BuildContext context, String text, FontWeight fontWeight) {
   return AppBar(
-    backgroundColor: const Color.fromARGB(255, 90, 72, 17),
+    backgroundColor: const Color.fromRGBO(0, 0, 0, 100),
     centerTitle: true,
     leading: IconButton(
       onPressed: () {
