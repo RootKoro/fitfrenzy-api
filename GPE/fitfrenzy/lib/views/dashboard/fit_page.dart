@@ -278,7 +278,7 @@ class _FitPageState extends State<FitPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
-                    Text('Akram test',
+                    Text('John DOE',
                         style: TextStyle(color: Colors.white)),
                   ],
                 ),
