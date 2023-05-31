@@ -277,8 +277,8 @@ class _FitPageState extends State<FitPage> {
                 padding: const EdgeInsets.only(top: 5),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text('Akram test',
+                  children: const [
+                    Text('John DOE',
                         style: TextStyle(color: Colors.white)),
                   ],
                 ),
@@ -287,8 +287,8 @@ class _FitPageState extends State<FitPage> {
                 padding: const EdgeInsets.fromLTRB(0, 0, 800, 0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text('Football',
+                  children: const [
+                    Text('Volleyball',
                         style: TextStyle(color: Colors.white)),
                   ],
                 ),

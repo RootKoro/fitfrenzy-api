@@ -59,7 +59,7 @@ class _SportsState extends State<Sports> {
                     child: Row(
                       children: [
                         Image.asset(
-                          "assets/images/gym.png",
+                          "images/gym.png",
                           width: 50,
                           height: 50,
                         ),
