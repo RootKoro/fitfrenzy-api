@@ -33,12 +33,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Image.asset(
-            "images/fitfrenzy_logo.png",
-          ),
-        ),
+        child: Image.asset('assets/images/fitfrenzy_logo.png'),
       ),
     );
   }

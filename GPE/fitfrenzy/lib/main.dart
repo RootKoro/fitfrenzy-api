@@ -56,16 +56,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
-        textTheme: Theme.of(context).textTheme.apply(
-          bodyColor: Colors.black,
-          displayColor: Colors.white,
-        )
-      ).copyWith(
-          colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.amber),
+          primarySwatch: Colors.amber,
+          textTheme: Theme.of(context).textTheme.apply(
+                bodyColor: Colors.black,
+                displayColor: Colors.white,
+              )).copyWith(
+        colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.amber),
       ),
       home: //AppDashboardPage(),
-          isLoggedIn ? AppDashboardPage() : const Home(),
+          isLoggedIn ? const AppDashboardPage() : const Home(),
     );
   }
 }
