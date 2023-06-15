@@ -46,6 +46,7 @@ services:
       - "5006:5006"
     volumes:
       - //var/run/docker.sock:/var/run/docker.sock
+      - ./fitfrenzy:/app
     command: flutter run -d web-server --web-port 5006 --web-hostname 0.0.0.0
     restart: always
 

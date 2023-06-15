@@ -16,9 +16,7 @@ class AppDashboardPage extends StatefulWidget {
   final String? userId;
   const AppDashboardPage({Key? key, this.userId}) : super(key: key);
 
-
   State<AppDashboardPage> createState() => _AppDashboardPageState();
-
 }
 
 class _AppDashboardPageState extends State<AppDashboardPage> {
@@ -26,7 +24,6 @@ class _AppDashboardPageState extends State<AppDashboardPage> {
   late String? token;
   late User? _user;
 
-  
   @override
   void initState() {
     _user = null;
@@ -42,7 +39,7 @@ class _AppDashboardPageState extends State<AppDashboardPage> {
     final user = await UserController().getUserInfo(token);
     setState(() {
       _user = user!;
-    }); 
+    });
   }
 
   void logout() {
@@ -55,11 +52,10 @@ class _AppDashboardPageState extends State<AppDashboardPage> {
   Widget build(BuildContext context) {
     return GetBuilder<HourController>(
       builder: (controller) {
-        if(_user == null) {
+        if (_user == null) {
           controller.tabIndex = 0;
           return const Home3();
-
-        }else {
+        } else {
           return Scaffold(
             backgroundColor: Colors.black,
             body: SafeArea(
@@ -72,22 +68,36 @@ class _AppDashboardPageState extends State<AppDashboardPage> {
                 ProfileScreen(user: _user!, onLogout: logout),
               ],
             )),
-            bottomNavigationBar: BottomNavigationBar(
-                selectedItemColor: Colors.amber,
-                backgroundColor: Colors.black,
-                unselectedItemColor: Colors.white,
-                currentIndex: controller.tabIndex,
-                // useLegacyColorScheme: false,
-                type: BottomNavigationBarType.fixed,
-                onTap: controller.changeTabIndex,
-                items: [
-                  _BottomNavigationBarItem(Icons.home, 'Accueil'),
-                  _BottomNavigationBarItem(
-                      Icons.date_range_outlined, 'Calendrier'),
-                  _BottomNavigationBarItem(Icons.newspaper_rounded, 'Actualités'),
-                  _BottomNavigationBarItem(
-                      Icons.person, 'Profile'),
-                ]),
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(50.0),
+                  topRight: Radius.circular(50.0),
+                  bottomLeft: Radius.circular(50.0),
+                  bottomRight: Radius.circular(50.0),
+                ),
+                child: BottomNavigationBar(
+                  selectedItemColor: Colors.amber,
+                  selectedFontSize: 18.0,
+                  unselectedFontSize: 12.0,
+                  backgroundColor: Colors.white,
+                  unselectedItemColor: Colors.black,
+                  currentIndex: controller.tabIndex,
+                  // useLegacyColorScheme: false,
+                  type: BottomNavigationBarType.fixed,
+                  onTap: controller.changeTabIndex,
+                  items: [
+                    _BottomNavigationBarItem(Icons.home, 'Accueil'),
+                    _BottomNavigationBarItem(
+                        Icons.date_range_outlined, 'Calendrier'),
+                    _BottomNavigationBarItem(
+                        Icons.newspaper_rounded, 'Actualités'),
+                    _BottomNavigationBarItem(Icons.person, 'Profile'),
+                  ],
+                ),
+              ),
+            ),
           );
         }
       },

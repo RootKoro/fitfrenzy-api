@@ -78,7 +78,7 @@ class _FitPageState extends State<FitPage> {
 
     //Declaration of the first video and start of the second
     videoControllerService =
-        VideoPlayerController.asset('../../../assets/vidéos/service.mp4');
+        VideoPlayerController.asset('../../../assets/videos/service.mp4');
 
     videoControllerService.addListener(() {
       if (videoControllerService.value.position ==
@@ -94,7 +94,7 @@ class _FitPageState extends State<FitPage> {
 
     //Declaration of the second video and start of the third
     videoControllerReception =
-        VideoPlayerController.asset('../../../assets/vidéos/reception.mp4');
+        VideoPlayerController.asset('../../../assets/videos/reception.mp4');
 
     videoControllerReception.addListener(() {
       if (videoControllerReception.value.position ==
@@ -110,7 +110,7 @@ class _FitPageState extends State<FitPage> {
 
     //Declaration of the third video
     videoControllerPasse =
-        VideoPlayerController.asset('../../../assets/vidéos/passe.mp4');
+        VideoPlayerController.asset('../../../assets/videos/passe.mp4');
 
     videoControllerPasse.addListener(() {
       if (videoControllerPasse.value.position ==
@@ -230,17 +230,16 @@ class _FitPageState extends State<FitPage> {
           child: Column(
             children: [
               Transform.rotate(
-                angle: 6,
-                origin: const Offset(0, 0),
-                child: const Text(
-                  'FITFRENZY',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.amber),
-                )
-              ),
+                  angle: 6,
+                  origin: const Offset(0, 0),
+                  child: const Text(
+                    'FITFRENZY',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.amber),
+                  )),
               SizedBox(height: 32.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -278,8 +277,7 @@ class _FitPageState extends State<FitPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
-                    Text('John DOE',
-                        style: TextStyle(color: Colors.white)),
+                    Text('John DOE', style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ),
@@ -288,8 +286,7 @@ class _FitPageState extends State<FitPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
-                    Text('Volleyball',
-                        style: TextStyle(color: Colors.white)),
+                    Text('Volleyball', style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ),
@@ -574,5 +571,4 @@ class _FitPageState extends State<FitPage> {
       ),
     );
   }
-
 }
