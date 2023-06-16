@@ -10,7 +10,7 @@ Each page must have an explicite name written in the following format `pagename.
 
 ### Rule 2
 
-Each page must be made with a react class component (download for vscode the react extension named `simple react snippets` and in the file just write `cc` and tabulate).
+You should try to write your page files file a react function component (download for vscode the react extension named `simple react snippets` and in the file just write `cc` and tabulate).
 
 ### Rule 3
 
