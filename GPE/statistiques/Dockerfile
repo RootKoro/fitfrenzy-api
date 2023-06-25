@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY ./statistiques/package*.json ./
 
-RUN npm install --only=development
+RUN npm install
 
 COPY ./statistiques .
 
