@@ -37,18 +37,25 @@ services:
     ports:
         - 8081:8081
 
-  flutter:
-    container_name: gpe_flutter
+  fitfrenzy_frontend:
+    container_name: fitfrenzy_front
     build:
-      context: ./fitfrenzy
-      target: development
+      context: ./new-fitfrenzy
+      args:
+        - NODE_ENV=development
+    environment:
+      - NODE_ENV=development
+    tty: true
     ports:
-      - "5006:5006"
+      - '19006:19006'
+      - '19001:19001'
+      - '19002:19002'
     volumes:
-      - //var/run/docker.sock:/var/run/docker.sock
-      - ./fitfrenzy:/app
-    command: flutter run -d web-server --web-port 5006 --web-hostname 0.0.0.0
-    restart: always
+      - ./new-fitfrenzy:/fitfrenzy/app:delegated
+      - ./new-fitfrenzy/package.json:/fitfrenzy/package.json
+      - ./new-fitfrenzy/package-lock.json:/fitfrenzy/package-lock.json
+    healthcheck:
+      disable: true
 
   users_api:
     container_name: users
