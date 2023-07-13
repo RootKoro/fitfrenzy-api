@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:20-alpine3.17
 
 # set our node environment, either development or production
 # defaults to production, compose overrides this to development on build and run
