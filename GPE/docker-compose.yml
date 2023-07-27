@@ -50,10 +50,6 @@ services:
       - '19006:19006'
       - '19001:19001'
       - '19002:19002'
-    volumes:
-      - ./new-fitfrenzy:/fitfrenzy/app:delegated
-      - ./new-fitfrenzy/package.json:/fitfrenzy/package.json
-      - ./new-fitfrenzy/package-lock.json:/fitfrenzy/package-lock.json
     healthcheck:
       disable: true
 
@@ -68,7 +64,7 @@ services:
       - /usr/src/app/node_modules
     ports:
       - 3000:3000
-    command: npm run start:dev
+    command: npm run start
     env_file:
       - users/.env
     depends_on:
