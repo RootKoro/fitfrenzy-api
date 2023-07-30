@@ -13,6 +13,9 @@ Each component must have an explicite name written in the following format `comp
 
 Each component must be written with a react function component (download for vscode the react extension named `simple react snippets` and in the file just write `ffc` and tabulate).
 
+Other possibility, download the extension Simple React Snippets and write `rnfes` and tabulate
+
+
 ### Rule 3
 
 While more than one component are using the same kind of code, you must made them only one modulable component
