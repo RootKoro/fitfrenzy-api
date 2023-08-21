@@ -19,7 +19,7 @@ export class UsersService {
     try {
       const user = new this.customerModel(createCustomerDto);
       await user.save();
-      return this.customerModel.findOne({ _id : user._id })
+      return this.customerModel.findOne({ email : user.email })
     } catch (error) {
       if(error.code === 11000) {
         throw new HttpException('Email already taken', HttpStatus.CONFLICT);
@@ -32,7 +32,7 @@ export class UsersService {
     try {
       const user = new this.userModel(createUserDto);
       await user.save();
-      return this.userModel.findOne({ _id : user._id })
+      return this.userModel.findOne({ email : user.email })
     } catch (error) {
       if(error.code === 11000) {
         throw new HttpException("Email already taken", HttpStatus.CONFLICT)
@@ -61,6 +61,6 @@ export class UsersService {
   }
 
   async getUser(query: object ): Promise<Customer> {
-    return this.customerModel.findOne(query).select('+password');
+    return this.customerModel.findOne(query);
   }
 }

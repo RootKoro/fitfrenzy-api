@@ -22,16 +22,14 @@ export class UsersController {
   @Post('/signup')
   async create(@Body() createUserDto: CreateCustomerDto) {
     const saltOrRounds = 10;
-    const hashedPassword = await bcrypt.hash(createUserDto.password, saltOrRounds);
-    createUserDto.password = hashedPassword;
+    createUserDto.password = await bcrypt.hash(createUserDto.password, saltOrRounds);
     return this.usersService.create(createUserDto);
   }
 
   @Post('/admin/signup')
   async createAdmin(@Body() createUserDto: CreateUserDto) {
     const saltOrRounds = 10;
-    const hashedPassword = await bcrypt.hash(createUserDto.password, saltOrRounds);
-    createUserDto.password = hashedPassword;
+    createUserDto.password = await bcrypt.hash(createUserDto.password, saltOrRounds);
     return this.usersService.createAdmin(createUserDto);
   }
 
