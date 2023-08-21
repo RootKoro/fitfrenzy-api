@@ -1,6 +1,7 @@
+import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-export const swaggerConfig = (app) => {
+export const swaggerConfig = (app: INestApplication) => {
   const options = new DocumentBuilder()
     .setTitle('Sports API Documentation')
     .setDescription('API Documentation for Microservice sports')

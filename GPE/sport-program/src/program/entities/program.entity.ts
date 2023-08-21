@@ -1,6 +1,6 @@
 export class Program {
     type: string;
-    questions: string;
+    program: string;
     created_at: Date;
     updated_at: Date;
 }

@@ -5,36 +5,43 @@ import {
     IsIn,
     IsOptional
   } from 'class-validator';
-
-  import { CreateUserDto } from './create-user.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { CreateUserDto } from './create-user.dto';
 
   export class CreateCustomerDto extends CreateUserDto {
+    @ApiProperty({type: String})
     @IsString()
     @IsIn(['Male', 'Female'])
     @IsOptional()
     gender: String;
 
+    @ApiProperty({type: Number})
     @IsNumber()
     @IsOptional()
     height: number;
 
+    @ApiProperty({type: Number})
     @IsNumber()
     @IsOptional()
     weight: number;
 
+    @ApiProperty()
     @IsString()
     @IsOptional()
     illness: String[];
 
+    @ApiProperty({type: Number})
     @IsNumber()
     @IsOptional()
     exp: number;
 
+    @ApiProperty({type: String})
     @IsString()
     @MaxLength(99)
     @IsOptional()
     level: String;
 
+    @ApiProperty()
     @IsString()
     @IsOptional()
     preferences: String[];

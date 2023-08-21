@@ -2,26 +2,32 @@ import {
     IsNotEmpty,
     IsString,
     IsNumber,
-  } from 'class-validator';
+} from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
   export class CreateSportStatDto {
-    @IsNotEmpty()
     @IsString()
+    @IsNotEmpty()
+    @ApiProperty({type: String})
     id_sport: string;
 
-    @IsNotEmpty()
     @IsNumber()
+    @IsNotEmpty()
+    @ApiProperty({type: Number})
     rank: number;
 
-    @IsNotEmpty()
     @IsNumber()
+    @IsNotEmpty()
+    @ApiProperty({type: Number})
     liked_by: number;
 
-    @IsNotEmpty()
     @IsNumber()
+    @IsNotEmpty()
+    @ApiProperty({type: Number})
     practiced_by: number;
 
-    @IsNotEmpty()
     @IsString()
+    @IsNotEmpty()
+    @ApiProperty({type: String})
     other_informations: string;
-  }
+}
