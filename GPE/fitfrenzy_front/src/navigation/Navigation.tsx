@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Chat from "../screens/Chat";
+import { Chat } from "../screens/Chat";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Image } from "@rneui/base";
 import Calendar from "../screens/Calendar";
-import Sport from "../screens/Sport";
+import { Sport } from "../screens/Sport";
 
 const Tab = createBottomTabNavigator()
 
