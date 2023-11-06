@@ -8,3 +8,5 @@ database/db/
 database/db
 
 pubspec.lock
+.expo
+.DS_Store
