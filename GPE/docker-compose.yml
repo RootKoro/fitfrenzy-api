@@ -20,6 +20,8 @@ services:
       - 27017:27017
     volumes:
       - mongodb_data_container:/data/db
+    networks:
+      - default
 
   # remove in production
   mongo-express:
@@ -36,22 +38,24 @@ services:
     restart: unless-stopped
     ports:
         - 8081:8081
+    networks:
+      - default
 
-  fitfrenzy_frontend:
-    container_name: fitfrenzy_front
-    build:
-      context: ./new-fitfrenzy
-      args:
-        - NODE_ENV=development
-    environment:
-      - NODE_ENV=development
-    tty: true
-    ports:
-      - '19006:19006'
-      - '19001:19001'
-      - '19002:19002'
-    healthcheck:
-      disable: true
+  # fitfrenzy_frontend:
+  #   container_name: fitfrenzy_front
+  #   build:
+  #     context: ./new-fitfrenzy
+  #     args:
+  #       - NODE_ENV=development
+  #   environment:
+  #     - NODE_ENV=development
+  #   tty: true
+  #   ports:
+  #     - '19006:19006'
+  #     - '19001:19001'
+  #     - '19002:19002'
+  #   healthcheck:
+  #     disable: true
 
   users_api:
     container_name: users
@@ -62,13 +66,16 @@ services:
     volumes:
       - ./users:/usr/src/app
       - /usr/src/app/node_modules
+    restart: always
     ports:
       - 3000:3000
     command: npm run start
     env_file:
       - users/.env
-    depends_on:
-      - mongodb
+    networks:
+      - default
+    # depends_on:
+    #   - mongodb
 
   sports_api:
     container_name: sports
@@ -79,13 +86,16 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    restart: always
     ports:
       - 3333:3333
     command: npm run start:dev
     env_file:
       - sports/.env
-    depends_on:
-      - mongodb
+    networks:
+      - default
+    # depends_on:
+    #   - mongodb
 
   statistiques_api:
     container_name: statistiques
@@ -96,13 +106,16 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    restart: always
     ports:
       - 3334:3334
     command: npm run start:dev
     env_file:
       - statistiques/.env
-    depends_on:
-      - mongodb
+    networks:
+      - default
+    # depends_on:
+    #   - mongodb
 
   questionary_api:
     container_name: questionary
@@ -113,13 +126,16 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    restart: always
     ports:
       - 3335:3335
     command: npm run start:dev
     env_file:
       - questionary/.env
-    depends_on:
-      - mongodb
+    networks:
+      - default
+    # depends_on:
+    #   - mongodb
 
   sport_program_api:
     container_name: sport-program
@@ -130,13 +146,20 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    restart: always
     ports:
       - 3336:3336
     command: npm run start:dev
     env_file:
       - sport-program/.env
-    depends_on:
-      - mongodb
+    networks:
+      - default
+    # depends_on:
+    #   - mongodb
 
 volumes:
   mongodb_data_container:
+
+networks:
+  default:
+    driver: bridge
