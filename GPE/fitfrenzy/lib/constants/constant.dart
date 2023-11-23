@@ -1,2 +1,0 @@
-var showHome;
-var token;
