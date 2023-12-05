@@ -7,3 +7,10 @@ export const login = async (userCredentials: UserCredentials) : Promise<LoginRes
       const res = await axios.post<LoginResponse>(`${BASE_URL}/auth/login`, userCredentials);
       return res.data;
 };
+
+export const register = async (userData: UserData): Promise<RegistrationResponse | null> => {
+      const res = await axios.post<RegistrationResponse>(`${BASE_URL}/users/signup`, userData);
+      return res.data;
+}
+
+

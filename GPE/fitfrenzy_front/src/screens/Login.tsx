@@ -23,6 +23,7 @@ import GoogleSVG from '../../assets/images/misc/google.svg';
 import Button from '../components/Button';
 import InputField from '../components/InputField';
 import { ResizeMode } from 'expo-av';
+import { useLoginMutation } from '../hooks/queries/useLoginMutation';
 
 
 const validationSchema = yup.object().shape({
@@ -32,8 +33,16 @@ const validationSchema = yup.object().shape({
 
 const Login = ({navigation} : any) => {
   const [submitting, setSubmitting] = useState(false);
+  const {mutate: loginUser, data, isLoading} = useLoginMutation();
   
-  const onLogin = useCallback(async(values: any) => {
+
+  const onLogin = async (values: any) => {
+    try {
+      await loginUser(values);
+    }catch(error) {
+      console.log('Login error', error)
+    }
+  }
     try {
       console.log(values)
       const { confirmationPassword, ...apiData } = values;

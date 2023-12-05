@@ -24,6 +24,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import LogoSVG from '../../assets/images/misc/logo.svg';
 import GoogleSVG from '../../assets/images/misc/google.svg';
 import Button from '../components/Button';
+import { useRegisterMutation } from '../hooks/queries/useRegisterMutation';
 
 
 const validationSchemaa = Yup.object().shape({
@@ -44,7 +45,23 @@ const RegisterScreen = ({navigation}) => {
   const [dobLabel, setDobLabel] = useState('Date de naissance');
   const [submitting, setSubmitting] = useState(false);
 
-  const onRegister = useCallback(
+  const { mutate: register, isLoading, isError, isSuccess } = useRegisterMutation();
+  const onRegister = async(values, { validateForm }) => {
+    const errors = await validateForm(values);
+    try {
+        const { confirmationPassword, ...apiData } = values;
+
+        await register({...apiData, birthday: apiData.dob}, {
+            onSuccess: () => {
+                navigation.navigate('Login');
+            }
+        });
+
+    }catch(error) {
+        console.log("Register error: " + error);
+    }
+  }
+  /* const onRegister = useCallback(
     async(values: any, { validateForm }) => {
         console.info("onRegister")
 
