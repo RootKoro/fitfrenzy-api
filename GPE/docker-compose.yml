@@ -12,6 +12,7 @@ services:
               limits:
                   memory: 2048M
       container_name: Haproxy
+
   mongodb:
     image: mongo:latest
     env_file:
@@ -159,6 +160,11 @@ services:
 
 volumes:
   mongodb_data_container:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./database/db
 
 networks:
   default:
