@@ -22,14 +22,22 @@ export class UsersController {
   @Post('/signup')
   async create(@Body() createUserDto: CreateCustomerDto) {
     const saltOrRounds = 10;
-    createUserDto.password = await bcrypt.hash(createUserDto.password, saltOrRounds);
+    const hashedPassword = await bcrypt.hash(
+      createUserDto.password,
+      saltOrRounds,
+    );
+    createUserDto.password = hashedPassword;
     return this.usersService.create(createUserDto);
   }
 
   @Post('/admin/signup')
   async createAdmin(@Body() createUserDto: CreateUserDto) {
     const saltOrRounds = 10;
-    createUserDto.password = await bcrypt.hash(createUserDto.password, saltOrRounds);
+    const hashedPassword = await bcrypt.hash(
+      createUserDto.password,
+      saltOrRounds,
+    );
+    createUserDto.password = hashedPassword;
     return this.usersService.createAdmin(createUserDto);
   }
 
@@ -44,7 +52,10 @@ export class UsersController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateCustomerDto: UpdateCustomerDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCustomerDto: UpdateCustomerDto,
+  ) {
     return this.usersService.update(id, updateCustomerDto);
   }
 

@@ -1,4 +1,3 @@
-
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -11,20 +10,23 @@ import { User, UserDocument } from 'src/schemas/user.schema';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectModel(Customer.name) private readonly customerModel: Model<CustomerDocument>,
-    @InjectModel(User.name) private readonly userModel: Model<UserDocument>
+    @InjectModel(Customer.name)
+    private readonly customerModel: Model<CustomerDocument>,
+    @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
   ) {}
 
-  async create(createCustomerDto: CreateCustomerDto): Promise<CustomerDocument> {
+  async create(
+    createCustomerDto: CreateCustomerDto,
+  ): Promise<CustomerDocument> {
     try {
       const user = new this.customerModel(createCustomerDto);
       await user.save();
-      return this.customerModel.findOne({ email : user.email })
+      return this.customerModel.findOne({ _id: user._id });
     } catch (error) {
-      if(error.code === 11000) {
+      if (error.code === 11000) {
         throw new HttpException('Email already taken', HttpStatus.CONFLICT);
       }
-      throw error
+      throw error;
     }
   }
 
@@ -32,12 +34,12 @@ export class UsersService {
     try {
       const user = new this.userModel(createUserDto);
       await user.save();
-      return this.userModel.findOne({ email : user.email })
+      return this.userModel.findOne({ _id: user._id });
     } catch (error) {
-      if(error.code === 11000) {
-        throw new HttpException("Email already taken", HttpStatus.CONFLICT)
+      if (error.code === 11000) {
+        throw new HttpException('Email already taken', HttpStatus.CONFLICT);
       }
-      throw error
+      throw error;
     }
   }
 
@@ -51,16 +53,18 @@ export class UsersService {
 
   async update(
     id: string,
-    updateCustomerDto: UpdateCustomerDto
+    updateCustomerDto: UpdateCustomerDto,
   ): Promise<CustomerDocument> {
-    return this.customerModel.findByIdAndUpdate(id, updateCustomerDto, { new: true });
+    return this.customerModel.findByIdAndUpdate(id, updateCustomerDto, {
+      new: true,
+    });
   }
 
   async remove(id: string) {
     return this.customerModel.findByIdAndRemove(id);
   }
 
-  async getUser(query: object ): Promise<Customer> {
-    return this.customerModel.findOne(query);
+  async getUser(query: object): Promise<Customer> {
+    return this.customerModel.findOne(query).select('+password');
   }
 }
