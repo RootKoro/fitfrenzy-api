@@ -165,6 +165,36 @@ volumes:
       type: none
       o: bind
       device: ./database/db
+  users_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./users/src
+  questionaries_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./questionary/src
+  sports_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./sports/src
+  statistiques_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./statistiques/src
+  programs_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./sport-program/src
 
 networks:
   default:
