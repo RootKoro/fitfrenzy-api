@@ -14,7 +14,7 @@ export class User {
   password: string;
 
   @Prop({ required: true, type: 'date' })
-  birthday: Date;
+  birthday: string;
 
   @Prop({ required: true })
   firstname: string;
