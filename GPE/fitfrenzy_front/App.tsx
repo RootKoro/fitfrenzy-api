@@ -1,3 +1,4 @@
+import "./ReactotronConfig"
 import { StyleSheet } from 'react-native';
 import Navigation from './src/navigation/Navigation';
 import { NavigationContainer } from '@react-navigation/native';
@@ -6,11 +7,14 @@ import RootStackScreens from './src/navigation/Navigation';
 import * as SplashScreen from 'expo-splash-screen';
 import Splash from './src/screens/Splash'
 import * as Font from 'expo-font';
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Provider } from 'react-redux'
+import store from './src/redux/store';
 
 export default function App({navigation}: any) {
   const [isSplashVisible, setSplashVisible] = useState(true);
-  
+  const queryClient = new QueryClient();
+
   useEffect(() => {
     //SplashScreen.preventAutoHideAsync();
     const loadFonts = async () => {
@@ -30,9 +34,13 @@ export default function App({navigation}: any) {
   }, []);
 
   return (
-      <NavigationContainer>
-        {isSplashVisible ? <Splash /> : <RootStackScreens /> }
-      </NavigationContainer>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          {isSplashVisible ? <Splash /> : <RootStackScreens /> }
+        </NavigationContainer>
+      </QueryClientProvider>
+    </Provider>
   );
 }
 
