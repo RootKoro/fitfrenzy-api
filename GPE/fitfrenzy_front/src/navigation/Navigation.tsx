@@ -5,16 +5,30 @@ import { StyleSheet, View } from "react-native";
 import { Image } from "@rneui/base";
 import Calendar from "../screens/Calendar";
 import { Sport } from "../screens/Sport";
+import { Settings } from "../screens/Settings";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Survey from "../screens/Survey";
+import Login from "../screens/Login";
+import Register from "../screens/Register";
+import { useSelector } from "react-redux";
 
-const Tab = createBottomTabNavigator()
+type BottomTabParams = {
+    Program: undefined,
+    Calendar: undefined,
+    Journal: undefined,
+    Settings: { top: number}
+};
+
+const Tab = createBottomTabNavigator<BottomTabParams>()
+
 
 
 const Tabs = () => {
 
     return(
-        <Tab.Navigator
+        <Tab.Navigator initialRouteName="Settings"
             screenOptions={({ route }) => ({
-                tabBarShowLabel: false,
+                tabBarShowLabel: false,   
                 tabBarStyle:{
                     position: 'absolute',
                     bottom: 25,
@@ -25,7 +39,7 @@ const Tabs = () => {
                     height: 70,
                     paddingBottom: 0,
                     ...styles.shadow
-                }
+                },
             })}>
             <Tab.Screen name="Program"  component={Sport}
                 options={{
@@ -68,7 +82,7 @@ const Tabs = () => {
                         </View>
                     )
                 }}/>
-            <Tab.Screen name="Journal" key="Journal" component={Chat}
+            <Tab.Screen name="Journal" key="Journal" component={Survey}
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
@@ -89,7 +103,7 @@ const Tabs = () => {
                         </View>
                     )
                 }}/>
-            <Tab.Screen name="Chat" key="Chat" component={Chat}
+            <Tab.Screen name="Settings" key="Settings" component={Settings} initialParams={{ top: 5 }}
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
@@ -114,6 +128,46 @@ const Tabs = () => {
     )
 }
 
+export type RootStackPramList = {
+    Splash: any
+    Register: any
+    Login: any
+    CardStack: any
+    Survey: any
+    Home: any
+    EditProfile: any
+}
+
+const RootStack = createNativeStackNavigator<RootStackPramList>();
+
+const RootStackScreens = () => {
+
+    const { userToken: isLoggedIn } = useSelector((state: any) => state.auth)
+    return (
+        <RootStack.Navigator
+            screenOptions={{
+            headerShown: false,
+            }}
+        >
+            {!isLoggedIn ? (
+                <>
+                    <RootStack.Screen name="Login" component={Login} />
+                    <RootStack.Screen name="Register" component={Register} />
+                </>
+            ) : (
+                <>
+                    <RootStack.Screen name="Home" component={Tabs}/>
+                    <RootStack.Screen name="Survey" component={Survey} />
+                    {/* <RootStack.Screen name="CardStack" component={CardStack} /> */}
+                    <RootStack.Screen name="EditProfile" component={Chat} />
+                </>
+            )}
+        </RootStack.Navigator>
+    )
+};
+
+export default RootStackScreens;
+
 const styles = StyleSheet.create({
     shadow: {
         shadowColor: '#7F5DF0',
@@ -126,4 +180,3 @@ const styles = StyleSheet.create({
         elevation: 5
     }
 })
-export default Tabs;
