@@ -7,20 +7,21 @@ import { Button } from '@rneui/base';
 import React from 'react';
 import { View, Text, Image,  StyleSheet } from 'react-native';
 import { RootStackPramList } from '../navigation/Navigation';
+import { useUserProfile } from '../hooks/queries/useUserQuery';
 
 export interface ProfileProps {
     route: RouteProp<RootStackPramList, 'Home'>;
     navigation: NativeStackNavigationProp<RootStackPramList, 'Home'>
 }
 export const Profile = ({navigation}: any) => {
-
+  const {refetch : getUserProfile, data: user, isSuccess} = useUserProfile();
     
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
         <Image source={require('../../assets/images/bg2.jpeg')} style={styles.profileImage} />
-        <Text style={styles.profileName}>Sadoudi H.</Text>
-        <Text style={styles.profileSubtitle}>sadoud_h@etna-alternance.net</Text>
+        <Text style={styles.profileName}>{`${user?.firstname} ${user?.lastname}`}</Text>
+        <Text style={styles.profileSubtitle}>{user?.email}</Text>
       </View>
       <Button 
         title="Modifier le profil"
