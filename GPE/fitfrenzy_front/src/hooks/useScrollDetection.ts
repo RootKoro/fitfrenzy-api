@@ -29,7 +29,7 @@ export const useScrollDetection = (props: useScrollDetectionProps) => {
         };
         checkScrollEnabled();
     }, [containerHeight, contentHeight])
-    console.log("isScrollingEnabled ", isScrollEnabled);
+    
 
     return {
         scrollViewRef,
