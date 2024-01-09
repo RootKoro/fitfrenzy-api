@@ -11,9 +11,11 @@ import { authActions } from '../../redux/authSlice';
 
 export const useRegisterMutation = () => {
     const dispatch = useDispatch<any>();
-  
     return useMutation(register, {
       onSuccess(res) {
+        /* const token = res?.access_token;
+        token && saveToken(token);
+        dispatch(authActions.setToken(token)); */
         console.log("Register Successfully")
       },
       onError(err) {

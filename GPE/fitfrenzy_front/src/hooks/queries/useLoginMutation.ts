@@ -2,36 +2,41 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AxiosError } from 'axios';
 import { Alert } from 'react-native';
-import { login } from '../../api/auth';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { login, userProfile } from '../../api/auth';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { saveToken } from '../../helpers/authToken';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../redux/authSlice';
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import "core-js/stable/atob";
-import useUserProfile from './useUserQuery';
+import { useRegisterMutation } from './useRegisterMutation';
+import { useEffect, useState } from 'react';
+import { setToken } from '../../api';
 
 export const useLoginMutation = () => {
     const dispatch = useDispatch<any>();
-    const { refetch: getUserProfile, data } = useUserProfile();
+    
     const queryClient = useQueryClient();
+    
+    /* const sd = useQuery({
+      queryKey: ['userProfile'],
+      queryFn: userProfile,
+    }); */
     
     return useMutation({
       mutationFn: login,
-      onSuccess: (res) => {
+      onSuccess: async (res) => {
         const token = res?.access_token;
         if(token) {
           const decodedToken = jwtDecode<JwtPayload & { email: string }>(token);
           saveToken(token);
-          console.log(decodedToken);
-          dispatch(authActions.setUserInfo({email: decodedToken.email, id: decodedToken.sub}));
+          dispatch(authActions.setUserInfo({email: decodedToken.email, _id: decodedToken.sub}));
           dispatch(authActions.setToken(token));
+          setToken(token);
           console.log("Login Successfully")
-          console.log("@@@@")
-          console.log(data);
-          
-          getUserProfile();
-          console.log(data);
+          await queryClient.invalidateQueries(['userProfile'])
+          /* await getUserProfile();
+          console.log("data",data, isSuccess); */
 
         }
         /* AsyncStorage.setItem('token', token);

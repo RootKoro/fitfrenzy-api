@@ -1,19 +1,25 @@
 import { useQuery } from '@tanstack/react-query';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userProfile } from '../../api/auth';
+import { useEffect, useState } from 'react';
+import { Alert } from 'react-native';
+import { authActions } from '../../redux/authSlice';
 
 
-const useUserProfile = () => {
-  const token = useSelector((state: any) => state.auth.token);
-  const userId = useSelector((state: any) => state.auth.userInfo.id);
-  console.log("yyyyyy")
-  console.log(token)
-  console.log(userId)
-  return useQuery(['userProfile', userId], () => userProfile(userId, token), {
-    onSuccess: (fetchedData) => {
-        console.log('User profile fetched successfully:', fetchedData);
-    }
+export const useUserProfile = () => {
+  const dispatch = useDispatch<any>();
+  
+  return useQuery({
+    queryKey: ['userProfile'],
+    queryFn: userProfile,
+    enabled: true,
+    cacheTime: 0,
+    onSuccess: (fetchedUser) => {
+      //console.log('User profile fetched successfully:', fetchedUser);
+      dispatch(authActions.setUserInfo(fetchedUser));
+    },
+    onError: (error) => {
+      console.log('User profile fetched failed:', error);
+    },
   });
 };
-
-export default useUserProfile;
