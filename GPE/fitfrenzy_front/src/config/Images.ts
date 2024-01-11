@@ -1,0 +1,13 @@
+export default {
+  UserImage: require('../../assets/images/UserImage.png'),
+  PortraitSmilingAfroAmericanSportsManStretchingHisMuscularArmsBeforeWorkoutBySeaUsingMusicAppHisSmartphone1: require('../../assets/images/PortraitSmilingAfroAmericanSportsManStretchingHisMuscularArmsBeforeWorkoutBySeaUsingMusicAppHisSmartphone1.png'),
+  CategoryHand: require('../../assets/images/CategoryHand.png'),
+  Uncheck: require('../../assets/images/Uncheck.png'),
+  Check: require('../../assets/images/Check.png'),
+  PexelsNappy9360751: require('../../assets/images/PexelsNappy9360751.png'),
+  Rectangle224293: require('../../assets/images/Rectangle224293.png'),
+  Rectangle224291: require('../../assets/images/Rectangle224291.png'),
+  Rectangle22429: require('../../assets/images/Rectangle22429.png'),
+  Ellipse209: require('../../assets/images/Ellipse209.png'),
+  Group162742: require('../../assets/images/Group162742.png'),
+  Progress: require('../../assets/images/Progress.png'),
