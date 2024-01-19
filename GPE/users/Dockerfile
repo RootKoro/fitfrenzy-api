@@ -1,4 +1,5 @@
-FROM node:18-alpine AS development
+FROM node:18 AS development
+# FROM node:18-alpine AS development
 
 WORKDIR /usr/src/app
 
@@ -11,7 +12,8 @@ COPY ./users .
 RUN npm install @nestjs/swagger swagger-ui-express
 RUN npm run build
 
-FROM node:18-alpine as production
+FROM node:18 as production
+# FROM node:18-alpine as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
