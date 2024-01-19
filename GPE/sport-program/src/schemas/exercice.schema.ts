@@ -11,6 +11,15 @@ export class Exercice {
   label: string;
 
   @Prop({ required: true })
+  type: string;
+
+  @Prop({ required: true })
+  sports: string;
+
+  @Prop({ required: true })
+  level: string;
+
+  @Prop({ required: true })
   image_path: string;
 
   @Prop({ required: true })
