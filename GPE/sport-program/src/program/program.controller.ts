@@ -1,15 +1,41 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { ProgramService } from './program.service';
+import { ProgramGenerator } from '../utils/program_generator';
 import { CreateProgramDto } from './dto/create-program.dto';
 import { UpdateProgramDto } from './dto/update-program.dto';
+import { ExerciceService } from '../exercices/exercice.service';
 
 @Controller('programs')
 export class ProgramController {
-  constructor(private readonly programService: ProgramService) {}
+  constructor(
+    private readonly programService: ProgramService,
+    private readonly exerciceService: ExerciceService,
+  ) {}
 
   @Post()
-  create(@Body() createProgramDto: CreateProgramDto) {
-    return this.programService.create(createProgramDto);
+  async create(@Body() infos: any) {
+    try {
+      const pg = new ProgramGenerator(
+        infos.schedule,
+        infos.sport,
+        this.exerciceService,
+        infos.userLevel,
+      );
+
+      const programs = await pg.generatePrograms();
+      programs.forEach((program) => this.programService.create(program));
+      return { success: true, message: 'Programs created successfully' };
+    } catch (error) {
+      return { success: false, message: 'Error creating programs' };
+    }
   }
 
   @Get()
