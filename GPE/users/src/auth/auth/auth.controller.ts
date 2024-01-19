@@ -9,7 +9,7 @@ import {
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from '../jwt-auth.guard';
 import { LocalAuthGuard } from '../local.guard';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../../users/users.service';
 
 @Controller('auth')
 export class AuthController {
