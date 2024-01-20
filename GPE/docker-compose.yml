@@ -58,6 +58,24 @@ services:
   #   healthcheck:
   #     disable: true
 
+  # expo:
+  #   container_name: expo-container
+  #   build:
+  #     context: ./fitfrenzy_front
+  #     args:
+  #       - NODE_ENV=development
+  #       - PLATFORM=linux/amd64
+  #   environment:
+  #     - NODE_ENV=development
+  #   ports:
+  #     - 19000:19000
+  #     - 19001:19001
+  #     - 19002:19002
+  #     - 19006:19006
+  #   volumes:
+  #     - ./fitfrenzy_front/:/app:delegated
+  #     - expo_node_modules:/app/node_modules
+    
   users_api:
     container_name: users
     build:
@@ -199,3 +217,4 @@ volumes:
 networks:
   default:
     driver: bridge
+  # expo_node_modules: {}
