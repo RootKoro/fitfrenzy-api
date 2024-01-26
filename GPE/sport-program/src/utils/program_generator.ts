@@ -1,8 +1,12 @@
-import { ExerciceDocument } from '../schemas/exercice.schema';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Exercice, ExerciceDocument } from '../schemas/exercice.schema';
 import { ExerciceService } from '../exercices/exercice.service';
 import { CreateProgramDto } from '../program/dto/create-program.dto';
 // import { ProgramDocument, ProgramSchema } from '../schemas/program.schema';
 
+@Injectable()
 export class ProgramGenerator {
   schedule: string[];
   sport: string;
@@ -11,6 +15,7 @@ export class ProgramGenerator {
   exerciceService: ExerciceService;
 
   constructor(
+    @InjectModel(Exercice.name)
     schedule: string[],
     sport: string,
     exerciceService: ExerciceService,
@@ -30,9 +35,9 @@ export class ProgramGenerator {
 
   private async selectExercices(): Promise<any> {
     let warmups = await this.exerciceService.findByTypeNSport(
-      'warmup',
-      this.sport,
-    );
+        'warmup',
+        this.sport,
+      );
     warmups = warmups.filter((warmup) => warmup.level === this.userLevel);
     warmups = ProgramGenerator.getRandomSubset(warmups, 2);
 

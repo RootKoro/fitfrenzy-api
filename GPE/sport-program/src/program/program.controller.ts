@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Inject,
   Post,
   Body,
   Param,
@@ -9,15 +10,17 @@ import {
 } from '@nestjs/common';
 import { ProgramService } from './program.service';
 import { ProgramGenerator } from '../utils/program_generator';
-import { CreateProgramDto } from './dto/create-program.dto';
 import { UpdateProgramDto } from './dto/update-program.dto';
 import { ExerciceService } from '../exercices/exercice.service';
+
 
 @Controller('programs')
 export class ProgramController {
   constructor(
-    private readonly programService: ProgramService,
+    @Inject(ExerciceService)
     private readonly exerciceService: ExerciceService,
+    @Inject(ProgramService)
+    private readonly programService: ProgramService,
   ) {}
 
   @Post()

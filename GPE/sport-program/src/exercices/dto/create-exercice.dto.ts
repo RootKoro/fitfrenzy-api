@@ -12,10 +12,10 @@ export class CreateExerciceDto {
   @IsString()
   type: string; /* Warm up / exercice / streching */
 
-  @ApiProperty({ type: String })
+  @ApiProperty({ type: Array<string> })
   @IsNotEmpty()
   @IsString()
-  sports: string;
+  sports: string[];
 
   @ApiProperty({ type: String })
   @IsNotEmpty()
