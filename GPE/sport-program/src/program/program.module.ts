@@ -6,8 +6,6 @@ import { ProgramController } from './program.controller';
 import { ExerciceController } from './exercice.controller';
 import { Program, ProgramSchema } from 'src/schemas/program.schema';
 import { Exercice, ExerciceSchema } from 'src/schemas/exercice.schema';
-// import { ExerciceService } from 'src/exercices/exercice.service';
-// import { ExerciceModule } from 'src/exercices/exercice.module';
 
 @Module({
   imports: [

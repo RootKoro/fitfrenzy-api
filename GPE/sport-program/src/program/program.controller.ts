@@ -8,10 +8,10 @@ import {
   Delete,
   Put,
 } from '@nestjs/common';
+import { ExerciceService } from './exercice.service';
 import { ProgramService } from './program.service';
 import { ProgramGenerator } from '../utils/program_generator';
 import { UpdateProgramDto } from './dto/update-program.dto';
-import { ExerciceService } from '../exercices/exercice.service';
 
 
 @Controller('programs')

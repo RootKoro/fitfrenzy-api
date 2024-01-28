@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Exercice, ExerciceDocument } from '../schemas/exercice.schema';
-import { ExerciceService } from '../exercices/exercice.service';
+import { ExerciceService } from '../program/exercice.service';
 import { CreateProgramDto } from '../program/dto/create-program.dto';
 
 @Injectable()
