@@ -4,7 +4,6 @@ import { Model } from 'mongoose';
 import { Exercice, ExerciceDocument } from '../schemas/exercice.schema';
 import { ExerciceService } from '../exercices/exercice.service';
 import { CreateProgramDto } from '../program/dto/create-program.dto';
-// import { ProgramDocument, ProgramSchema } from '../schemas/program.schema';
 
 @Injectable()
 export class ProgramGenerator {

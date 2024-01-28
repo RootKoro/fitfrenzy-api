@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
-import { ProgramService } from './program.service';
-import { ProgramController } from './program.controller';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ProgramService } from './program.service';
+import { ExerciceService } from './exercice.service';
+import { ProgramController } from './program.controller';
+import { ExerciceController } from './exercice.controller';
 import { Program, ProgramSchema } from 'src/schemas/program.schema';
+import { Exercice, ExerciceSchema } from 'src/schemas/exercice.schema';
 // import { ExerciceService } from 'src/exercices/exercice.service';
-import { ExerciceModule } from 'src/exercices/exercice.module';
+// import { ExerciceModule } from 'src/exercices/exercice.module';
 
 @Module({
   imports: [
@@ -14,9 +17,19 @@ import { ExerciceModule } from 'src/exercices/exercice.module';
         name: Program.name,
         schema: ProgramSchema,
       },
+      {
+        name: Exercice.name,
+        schema: ExerciceSchema,
+      },
     ]),
   ],
-  controllers: [ProgramController],
-  providers: [ProgramService],
+  controllers: [
+    ProgramController,
+    ExerciceController,
+  ],
+  providers: [
+    ProgramService,
+    ExerciceService,
+  ],
 })
 export class ProgramModule {}
