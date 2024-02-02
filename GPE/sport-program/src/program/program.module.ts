@@ -9,7 +9,7 @@ import { Exercice, ExerciceSchema } from 'src/schemas/exercice.schema';
 
 @Module({
   imports: [
-    ExerciceModule,
+    // ExerciceModule,
     MongooseModule.forFeature([
       {
         name: Program.name,
