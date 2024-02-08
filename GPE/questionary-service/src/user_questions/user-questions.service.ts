@@ -21,15 +21,11 @@ export class UserQuestionsService {
     return this.userQuestionsModel.find();
   }
 
-  findOne(id: string) {
-    return this.userQuestionsModel.findById(id);
+  async findByUID(id_user: string): Promise<UserQuestionsDocument[]> {
+    return this.userQuestionsModel.find().where("id_user").equals(id_user);
   }
 
-  async update(id: string, updateUserQuestionsDto: UpdateUserQuestionsDto): Promise<UserQuestionsDocument> {
-    return this.userQuestionsModel.findByIdAndUpdate(id, updateUserQuestionsDto);
-  }
-
-  async remove(id: string) {
-    return this.userQuestionsModel.findByIdAndRemove(id);
+  async findByQID(id_question: string): Promise<UserQuestionsDocument[]> {
+    return this.userQuestionsModel.find().where("id_question").equals(id_question);
   }
 }

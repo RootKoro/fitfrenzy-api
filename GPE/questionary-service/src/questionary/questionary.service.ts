@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateQuestionaryDto } from './dto/create-questionary.dto';
 import { UpdateQuestionaryDto } from './dto/update-questionary.dto';
-import { Questionary, QuestionaryDocument,  } from '../schemas/questionnary.schema';
+import { Questionary, QuestionaryDocument,  } from '../schemas/questionary.schema';
 
 @Injectable()
 export class QuestionaryService {

@@ -14,4 +14,9 @@ import { ApiProperty } from '@nestjs/swagger';
     @IsNotEmpty()
     @IsString()
     id_question: string;
+
+    @ApiProperty({type: String})
+    @IsNotEmpty()
+    @IsString()
+    response: string;
   }

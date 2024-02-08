@@ -56,7 +56,7 @@ services:
     volumes:
       - user-service-volume:/workspace:rw
       - user-service-volume:/app:rw
-      - /workspace/node_modules
+      # - /workspace/node_modules
       - /app/node_modules
     restart: unless-stopped
     ports:
@@ -78,7 +78,7 @@ services:
     volumes:
       - sport-service-volume:/workspace:rw
       - sport-service-volume:/app:rw
-      - /workspace/node_modules
+      # - /workspace/node_modules
       - /app/node_modules
     restart: unless-stopped
     ports:
@@ -100,7 +100,7 @@ services:
     volumes:
       - statistique-service-volume:/workspace:rw
       - statistique-service-volume:/app:rw
-      - /workspace/node_modules
+      # - /workspace/node_modules
       - /app/node_modules
     restart: unless-stopped
     ports:
@@ -122,7 +122,7 @@ services:
     volumes:
       - questionary-service-volume:/workspace:rw
       - questionary-service-volume:/app:rw
-      - /workspace/node_modules
+      # - /workspace/node_modules
       - /app/node_modules
     restart: unless-stopped
     ports:
@@ -144,7 +144,7 @@ services:
     volumes:
       - program-service-volume:/workspace:rw
       - program-service-volume:/app:rw
-      - /workspace/node_modules
+      # - /workspace/node_modules
       - /app/node_modules
     restart: unless-stopped
     ports:

@@ -1,20 +1,17 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type UserQuestionsDocument = UserQuestions & Document;
+export type ResponseDocument = Response & Document;
 
 @Schema({
   timestamps: { createdAt: 'created', updatedAt: 'updated' },
 })
-export class UserQuestions {
+export class Response {
   @Prop({ required: true })
-  id_user: string;
-
-  @Prop({ required: true })
-  id_question: string;
+  question_id: string;
 
   @Prop({ required: true })
   response: string;
 }
 
-export const UserQuestionsSchema = SchemaFactory.createForClass(UserQuestions);
+export const ResponseSchema = SchemaFactory.createForClass(Response);

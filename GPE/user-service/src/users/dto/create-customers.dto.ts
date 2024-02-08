@@ -25,6 +25,12 @@ import { CreateUserDto } from './create-user.dto';
     @IsOptional()
     weight: number;
 
+    @ApiProperty({type: String})
+    @IsString()
+    @MaxLength(99)
+    @IsOptional()
+    mood: String = "energetic";
+
     @ApiProperty()
     @IsString()
     @IsOptional()

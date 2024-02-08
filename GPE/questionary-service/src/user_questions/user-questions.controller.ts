@@ -3,7 +3,7 @@ import { UserQuestionsService } from './user-questions.service';
 import { CreateUserQuestionsDto } from './dto/create-user-questions.dto';
 import { UpdateUserQuestionsDto } from './dto/update-user-questions.dto';
 
-@Controller('user-questions')
+@Controller('users-answers')
 export class UserQuestionsController {
   constructor(private readonly userQuestionsService: UserQuestionsService) {}
 
@@ -17,18 +17,13 @@ export class UserQuestionsController {
     return this.userQuestionsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userQuestionsService.findOne(id);
+  @Get('by-user/:id')
+  findByUserID(@Param('id') id: string) {
+    return this.userQuestionsService.findByUID(id);
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateUserQuestionsDto: UpdateUserQuestionsDto) {
-    return this.userQuestionsService.update(id, updateUserQuestionsDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userQuestionsService.remove(id);
+  @Get('by-question/:id')
+  findByQuestionID(@Param('id') id: string) {
+    return this.userQuestionsService.findByQID(id);
   }
 }
