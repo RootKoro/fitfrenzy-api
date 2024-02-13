@@ -51,7 +51,7 @@ export class ProgramGenerator {
     );
 
     let strs = await this.exerciceService.findByTypeNSport(
-      'strchings',
+      'streching',
       this.sport,
     );
     strs = strs.filter((streching) => streching.level === this.userLevel);
