@@ -5,13 +5,16 @@ services:
       image: haproxy:2.2
       restart: always
       ports:
-          - "3005:3005"
+          - "80:80"
+          - "433:433"
       volumes:
-          - ./haproxy:/usr/local/etc/haproxy
+          - ./haproxy:/usr/local/etc/haproxy/haproxy.cfg:ro
       deploy:
           resources:
               limits:
                   memory: 2048M
+      networks:
+        - mongo-network
       container_name: Haproxy
 
   mongodb:
