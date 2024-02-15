@@ -35,7 +35,8 @@
 				"shd101wyy.markdown-preview-enhanced",
 				"davidanson.vscode-markdownlint",
 				"ms-azuretools.vscode-docker",
-				"postman.postman-for-vscode"
+				"postman.postman-for-vscode",
+				"gitkraken.gitlens-git-supercharged"
 			]
 		}
 	}
