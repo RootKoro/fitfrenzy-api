@@ -1,0 +1,76 @@
+{
+    "questions": [
+        {
+            "questionary_type": "short",
+            "question": "Quel est ton objectif ?"
+        },
+        {
+            "questionary_type": "long-1",
+            "question": "Souhaite-tu :"
+        },
+        {
+            "questionary_type": "long-1",
+            "question": "Quel est ton niveau de condition physique ?"
+        },
+        {
+            "questionary_type": "short",
+            "question": "Quelle est votre disponibilité hebdomadaire ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Combien de temps peux-tu consacrer à chaque séance d'entraînement ?"
+        },
+        {
+            "questionary_type": "lonsg",
+            "question": "Es-tu plus enclin(e) à t'entraîner ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Préfère-tu t'entraîner:"
+        },
+        {
+            "questionary_type": "long",
+            "question": "préfère tu t'entraîner:"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Quels sont tes zones corporelles que tu souhaites particulièrement travailler ou améliorer ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Quels sont tes centres d'intérêt et tes activités préférées en dehors du sport ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Quels sont tes objectifs pour la pratique d'un sport ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "As-tu des préférences en termes de nature des activités sportives ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Veux-tu pratiquer le sport pour :"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Quelles sont tes préférences en termes de rythme et d'intensité d'activité ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Quelle est ta curiosité envers de nouvelles expériences ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Quelle est ta préférence quant à la dimension sociale du sport ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Quelle est votre disponibilité hebdomadaire ?"
+        },
+        {
+            "questionary_type": "long",
+            "question": "Combien de temps peux-tu consacrer à chaque séance d'entraînement?"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "registers": [
+        {
+            "email": "user1@fitfrenzy.fr",
+            "password": "password",
+            "firstname": "User1",
+            "lastname": "TEST",
+            "birthday": "1982-12-01"
+        },
+        {
+            "email": "user2@fitfrenzy.fr",
+            "password": "password",
+            "firstname": "User2",
+            "lastname": "TEST",
+            "birthday": "1982-12-01"
+        },
+        {
+            "email": "user3@fitfrenzy.fr",
+            "password": "password",
+            "firstname": "User3",
+            "lastname": "TEST",
+            "birthday": "1982-12-01"
+        },
+        {
+            "email": "user4@fitfrenzy.fr",
+            "password": "password",
+            "firstname": "User4",
+            "lastname": "TEST",
+            "birthday": "1982-12-01"
+        },
+        {
+            "email": "user5@fitfrenzy.fr",
+            "password": "password",
+            "firstname": "User5",
+            "lastname": "TEST",
+            "birthday": "1982-12-01"
+        }
+    ]
+}

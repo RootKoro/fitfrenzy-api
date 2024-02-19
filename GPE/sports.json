@@ -1,0 +1,158 @@
+{
+    "sports": [
+        {
+            "label": "football",
+            "category": "equipe",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "basketball",
+            "category": "equipe",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "baseball",
+            "category": "equipe",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "handball",
+            "category": "equipe",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "football americain",
+            "category": "equipe",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "rugby",
+            "category": "equipe",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "golf",
+            "category": "individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "tennis",
+            "category": "individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "water polo",
+            "category": "equipe",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "escalade",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "natation",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": null
+        },
+        {
+            "label": "box",
+            "category": "individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "catche",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "routine sportive",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "fitness",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "musculation",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "gymnatique",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "cyclisme",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "bras de fer",
+            "category": "individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "hokey sur glace",
+            "category": "equipe",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "patinage artistique",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        },
+        {
+            "label": "balaie",
+            "category": "equipe::individuel",
+            "difficulty": "moyen",
+            "description": "Pas de description",
+            "rate": 0
+        }
+    ]
+}
