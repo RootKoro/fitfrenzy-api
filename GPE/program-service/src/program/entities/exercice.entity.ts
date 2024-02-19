@@ -3,6 +3,11 @@ export class Exercice {
   type: string; /* warmup / exercice / streching */
   level: number;
   sports: string[];
-  image_path: string;
+  media_path: string;
   description: string;
+  chrono: number;
+  time_in_sec: number;
+  reps: number;
+  rest: number;
+  series: number;
 }
