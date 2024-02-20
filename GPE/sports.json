@@ -29,13 +29,6 @@
             "rate": null
         },
         {
-            "label": "football americain",
-            "category": "equipe",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": null
-        },
-        {
             "label": "rugby",
             "category": "equipe",
             "difficulty": "moyen",
@@ -57,48 +50,6 @@
             "rate": null
         },
         {
-            "label": "water polo",
-            "category": "equipe",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": null
-        },
-        {
-            "label": "escalade",
-            "category": "equipe::individuel",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": null
-        },
-        {
-            "label": "natation",
-            "category": "equipe::individuel",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": null
-        },
-        {
-            "label": "box",
-            "category": "individuel",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": 0
-        },
-        {
-            "label": "catch / lutte",
-            "category": "equipe::individuel",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": 0
-        },
-        {
-            "label": "routine sportive",
-            "category": "equipe::individuel",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": 0
-        },
-        {
             "label": "fitness",
             "category": "equipe::individuel",
             "difficulty": "moyen",
@@ -106,14 +57,7 @@
             "rate": 0
         },
         {
-            "label": "musculation",
-            "category": "equipe::individuel",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": 0
-        },
-        {
-            "label": "gymnastique",
+            "label": "bodybuilding",
             "category": "equipe::individuel",
             "difficulty": "moyen",
             "description": "Pas de description",
@@ -121,34 +65,6 @@
         },
         {
             "label": "cyclisme",
-            "category": "equipe::individuel",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": 0
-        },
-        {
-            "label": "bras de fer",
-            "category": "individuel",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": 0
-        },
-        {
-            "label": "hockey sur glace",
-            "category": "equipe",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": 0
-        },
-        {
-            "label": "patinage artistique",
-            "category": "equipe::individuel",
-            "difficulty": "moyen",
-            "description": "Pas de description",
-            "rate": 0
-        },
-        {
-            "label": "balaie",
             "category": "equipe::individuel",
             "difficulty": "moyen",
             "description": "Pas de description",
