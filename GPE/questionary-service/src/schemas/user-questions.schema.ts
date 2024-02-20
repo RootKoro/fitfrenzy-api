@@ -14,7 +14,7 @@ export class UserQuestions {
   id_question: string;
 
   @Prop({ required: true })
-  response: string;
+  response: string[];
 }
 
 export const UserQuestionsSchema = SchemaFactory.createForClass(UserQuestions);
