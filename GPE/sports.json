@@ -85,7 +85,7 @@
             "rate": 0
         },
         {
-            "label": "catche",
+            "label": "catch / lutte",
             "category": "equipe::individuel",
             "difficulty": "moyen",
             "description": "Pas de description",
@@ -113,7 +113,7 @@
             "rate": 0
         },
         {
-            "label": "gymnatique",
+            "label": "gymnastique",
             "category": "equipe::individuel",
             "difficulty": "moyen",
             "description": "Pas de description",
@@ -134,7 +134,7 @@
             "rate": 0
         },
         {
-            "label": "hokey sur glace",
+            "label": "hockey sur glace",
             "category": "equipe",
             "difficulty": "moyen",
             "description": "Pas de description",

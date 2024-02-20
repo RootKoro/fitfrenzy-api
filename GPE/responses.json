@@ -1,0 +1,124 @@
+{
+    "responses": [
+        {
+            "question_id": "1",
+            "response": "Remise en forme / routine sportive."
+        },
+        {
+            "question_id": "1",
+            "response": "Trouver / Commencer un sport."
+        },
+        {
+            "question_id": "2",
+            "response": "Perdre du poids."
+        },
+        {
+            "question_id": "2",
+            "response": "Gagner en force."
+        },
+        {
+            "question_id": "2",
+            "response": "Améliorer ton endurance."
+        },
+        {
+            "question_id": "3",
+            "response": "`Je n'ai jamais fait de sport`."
+        },
+        {
+            "question_id": "3",
+            "response": "`J'ai fait du sport par le passé`."
+        },
+        {
+            "question_id": "6",
+            "response": "Le matin."
+        },
+        {
+            "question_id": "6",
+            "response": "L'après midi."
+        },
+        {
+            "question_id": "6",
+            "response": "Le soir."
+        },
+        {
+            "question_id": "7",
+            "response": "A la salle de sport."
+        },
+        {
+            "question_id": "7",
+            "response": "Chez toi (ou tout autre espace fermé sans équipement)."
+        },
+        {
+            "question_id": "7",
+            "response": "En plein air (ou tout autre espace ouvert)."
+        },
+        {
+            "question_id": "8",
+            "response": "Seul."
+        },
+        {
+            "question_id": "8",
+            "response": "En groupe."
+        },
+        {
+            "question_id": "11",
+            "response": "Te divertir."
+        },
+        {
+            "question_id": "11",
+            "response": "Te dépasser."
+        },
+        {
+            "question_id": "11",
+            "response": "Acquérir de nouvelle compétences."
+        },
+        {
+            "question_id": "11",
+            "response": "Vivre des expériences enrichissantes."
+        },
+        {
+            "question_id": "12",
+            "response": "Individuel."
+        },
+        {
+            "question_id": "12",
+            "response": "Equipe."
+        },
+        {
+            "question_id": "13",
+            "response": "Pouvoir participer à des compétitions."
+        },
+        {
+            "question_id": "13",
+            "response": "Des objectifs plus personnels."
+        },
+        {
+            "question_id": "14",
+            "response": "Sports calmes et relaxants."
+        },
+        {
+            "question_id": "14",
+            "response": "Sports dynamiques et intenses."
+        },
+        {
+            "question_id": "15",
+            "response": "Oui."
+        },
+        {
+            "question_id": "15",
+            "response": "Non."
+        },
+        {
+            "question_id": "15",
+            "response": "Peu importe."
+        },
+        {
+            "question_id": "16",
+            "response": "`J'aime bien intéragir avec les autres quand je fais du sport.`"
+        },
+        {
+            "question_id": "16",
+            "response": "`Je veux être seul lors de mes activités sportives.`"
+        }
+    ]
+}

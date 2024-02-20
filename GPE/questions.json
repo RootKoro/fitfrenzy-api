@@ -1,76 +1,84 @@
 {
     "questions": [
         {
+            "question_id": 1,
             "questionary_type": "short",
             "question": "Quel est ton objectif ?"
         },
         {
+            "question_id": 2,
             "questionary_type": "long-1",
             "question": "Souhaite-tu :"
         },
         {
+            "question_id": 3,
             "questionary_type": "long-1",
             "question": "Quel est ton niveau de condition physique ?"
         },
         {
+            "question_id": 4,
             "questionary_type": "short",
-            "question": "Quelle est votre disponibilité hebdomadaire ?"
+            "question": "Quelles sont tes disponibilités hebdomadaires (ex. Lundi 8h-10h, Mardi 18h30-22h30) ?"
         },
         {
+            "question_id": 5,
             "questionary_type": "long",
             "question": "Combien de temps peux-tu consacrer à chaque séance d'entraînement ?"
         },
         {
-            "questionary_type": "lonsg",
-            "question": "Es-tu plus enclin(e) à t'entraîner ?"
+            "question_id": 6,
+            "questionary_type": "long",
+            "question": "Es-tu plus enclin(e) à t'entraîner :"
         },
         {
-            "questionary_type": "long",
+            "question_id": 7,
+            "questionary_type": "long-1",
             "question": "Préfère-tu t'entraîner:"
         },
         {
+            "question_id": 8,
             "questionary_type": "long",
             "question": "préfère tu t'entraîner:"
         },
         {
-            "questionary_type": "long",
+            "question_id": 9,
+            "questionary_type": "long-1",
             "question": "Quels sont tes zones corporelles que tu souhaites particulièrement travailler ou améliorer ?"
         },
         {
-            "questionary_type": "long",
+            "question_id": 10,
+            "questionary_type": "long-2",
             "question": "Quels sont tes centres d'intérêt et tes activités préférées en dehors du sport ?"
         },
         {
-            "questionary_type": "long",
+            "question_id": 11,
+            "questionary_type": "long-2",
             "question": "Quels sont tes objectifs pour la pratique d'un sport ?"
         },
         {
-            "questionary_type": "long",
+            "question_id": 12,
+            "questionary_type": "short-2",
             "question": "As-tu des préférences en termes de nature des activités sportives ?"
         },
         {
-            "questionary_type": "long",
-            "question": "Veux-tu pratiquer le sport pour :"
+            "question_id": 13,
+            "questionary_type": "long-2",
+            "question": "Tu veux pratiquer le sport pour :"
         },
         {
-            "questionary_type": "long",
+            "question_id": 14,
+            "questionary_type": "long-2",
             "question": "Quelles sont tes préférences en termes de rythme et d'intensité d'activité ?"
         },
         {
-            "questionary_type": "long",
-            "question": "Quelle est ta curiosité envers de nouvelles expériences ?"
+            "question_id": 15,
+            "questionary_type": "long-2",
+            "question": "Envie de nouvelles expériences ?"
         },
         {
-            "questionary_type": "long",
+            "question_id": 16,
+            "questionary_type": "long-2",
             "question": "Quelle est ta préférence quant à la dimension sociale du sport ?"
-        },
-        {
-            "questionary_type": "long",
-            "question": "Quelle est votre disponibilité hebdomadaire ?"
-        },
-        {
-            "questionary_type": "long",
-            "question": "Combien de temps peux-tu consacrer à chaque séance d'entraînement?"
         }
     ]
 }
