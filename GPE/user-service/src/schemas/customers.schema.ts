@@ -28,6 +28,9 @@ export class Customer extends User {
 
   @Prop({ required: false })
   preferences: String[];
+
+  @Prop({ required: false })
+  surveyAnswered: boolean = false;
 }
 
 const CustomerSchema = SchemaFactory.createForClass(Customer);

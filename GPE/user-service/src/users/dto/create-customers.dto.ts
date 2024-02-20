@@ -3,7 +3,8 @@ import {
     IsNumber,
     MaxLength,
     IsIn,
-    IsOptional
+    IsOptional,
+    IsBoolean
   } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { CreateUserDto } from './create-user.dto';
@@ -52,4 +53,7 @@ import { CreateUserDto } from './create-user.dto';
     @IsOptional()
     preferences: String[];
 
+    @IsBoolean()
+    @IsOptional()
+    surveyAnswered: boolean = false;
   }
