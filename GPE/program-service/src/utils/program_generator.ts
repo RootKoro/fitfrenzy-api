@@ -32,50 +32,53 @@ export class ProgramGenerator {
     return shuffledArray.slice(0, count);
   }
 
-  private async selectExercices(): Promise<any> {
+  private async selectExercices(mood: string): Promise<ExerciceDocument[]> {
     let warmups = await this.exerciceService.findByTypeNSport(
-        'warmup',
-        this.sport,
-      );
-    warmups = warmups.filter((warmup) => warmup.level === this.userLevel);
-    warmups = ProgramGenerator.getRandomSubset(warmups, 2);
-
-    let exs = await this.exerciceService.findByTypeNSport(
+      'warmup',
+      this.sport,
+    );
+    let workouts = await this.exerciceService.findByTypeNSport(
       'exercise',
       this.sport,
     );
-    exs = exs.filter((exercice) => exercice.level === this.userLevel);
-    exs = ProgramGenerator.getRandomSubset(
-      exs,
-      Math.floor(Math.random() * (6 - 3 + 1)) + 3,
-    );
-
-    let strs = await this.exerciceService.findByTypeNSport(
+    let stretches = await this.exerciceService.findByTypeNSport(
       'streching',
       this.sport,
     );
-    strs = strs.filter((streching) => streching.level === this.userLevel);
-    strs = ProgramGenerator.getRandomSubset(strs, 5);
 
-    return {
-      warmups: warmups,
-      exs: exs,
-      strs: strs,
-    };
+    warmups = warmups.filter((warmup) => warmup.level === this.userLevel);
+    workouts = workouts.filter((workout) => workout.level === this.userLevel);
+    stretches = stretches.filter((strech) => strech.level === this.userLevel);
+    
+    if(mood == "tired"){
+      warmups = ProgramGenerator.getRandomSubset(warmups, 2);
+      workouts = ProgramGenerator.getRandomSubset(workouts, 3);
+      stretches = ProgramGenerator.getRandomSubset(stretches, 4);
+    }
+    else if (mood == "good"){
+      warmups = ProgramGenerator.getRandomSubset(warmups, 3);
+      workouts = ProgramGenerator.getRandomSubset(workouts, 5);
+      stretches = ProgramGenerator.getRandomSubset(stretches, 5);
+    }
+    else{
+      warmups = ProgramGenerator.getRandomSubset(warmups, 5);
+      workouts = ProgramGenerator.getRandomSubset(workouts, 7);
+      stretches = ProgramGenerator.getRandomSubset(stretches, 5);
+    }
+
+    let exercises = [warmups, workouts, stretches]
+    return [].concat(...exercises)
   }
 
-  public async generatePrograms(): Promise<CreateProgramDto[]> {
-    const exercices = await this.selectExercices();
+  public async generatePrograms(mood: string): Promise<CreateProgramDto[]> {
+    const exercises = await this.selectExercices(mood);
     let programs: CreateProgramDto[] = [];
-    this.schedule.forEach((time) => {
-      programs.push({
-        type: this.userLevel,
-        program: JSON.stringify({
-          time: time,
-          exercices: exercices,
-        }),
-      });
-    });
+    programs.push({
+      difficulty: this.userLevel,
+      schedule: this.schedule,
+      exercices: exercises,
+      done: false
+    })
 
     return programs;
   }

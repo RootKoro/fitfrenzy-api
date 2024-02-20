@@ -1,17 +1,31 @@
 import {
+  IsBoolean,
   IsNotEmpty,
   IsString,
+  IsArray,
+  IsEmpty
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { ExerciceDocument } from 'src/schemas/exercice.schema';
 
 export class CreateProgramDto {
   @ApiProperty({type: String})
   @IsNotEmpty()
   @IsString()
-  type: string;
-
-  @ApiProperty({type: String})
+  difficulty: string;
+  
+  @ApiProperty({type: Array<String>})
   @IsNotEmpty()
-  @IsString()
-  program: string;
+  @IsArray()
+  schedule: string[];
+
+  @ApiProperty({type: Array<ExerciceDocument>})
+  @IsNotEmpty()
+  @IsArray()
+  exercices: ExerciceDocument[];
+
+  @ApiProperty({type: Boolean})
+  @IsEmpty()
+  @IsBoolean()
+  done: boolean = false;
 }

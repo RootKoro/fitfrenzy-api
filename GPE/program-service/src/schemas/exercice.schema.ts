@@ -14,16 +14,31 @@ export class Exercice {
   type: string;
 
   @Prop({ required: true })
-  sports: string;
+  sports: string[];
 
   @Prop({ required: true })
   level: string;
 
   @Prop({ required: true })
-  image_path: string;
+  media_path: string;
 
   @Prop({ required: true })
   description: string;
+
+  @Prop({ required: true })
+  chrono: boolean;
+
+  @Prop({ required: false})
+  time_in_sec: number;
+
+  @Prop({ required: false})
+  reps: number;
+
+  @Prop({ required: false})
+  rest: number;
+
+  @Prop({ required: false})
+  series: number;
 }
 
 export const ExerciceSchema = SchemaFactory.createForClass(Exercice);

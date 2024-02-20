@@ -5,7 +5,7 @@ export class Exercice {
   sports: string[];
   media_path: string;
   description: string;
-  chrono: number;
+  chrono: boolean;
   time_in_sec: number;
   reps: number;
   rest: number;
