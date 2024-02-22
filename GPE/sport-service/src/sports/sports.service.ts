@@ -1,4 +1,3 @@
-
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -23,6 +22,16 @@ export class SportsService {
 
   findOne(id: string) {
     return this.sportModel.findById(id);
+  }
+
+  async findByTypeNDifficulty(
+    type: string,
+    difficulty: string,
+  ): Promise<SportDocument[]> {
+    return await this.sportModel.find({
+      type: type,
+      difficulty: difficulty,
+    });
   }
 
   async update(

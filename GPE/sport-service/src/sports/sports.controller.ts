@@ -11,7 +11,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { SportsService } from './sports.service';
 import { UpdateSportDto } from './dto/update-sport.dto';
 import { CreateSportDto } from './dto/create-sport.dto';
-
+import { SportGenerator } from 'src/utils/sport_generator';
 
 @ApiTags('sports')
 @Controller('sports')
@@ -21,6 +21,22 @@ export class SportsController {
   @Post()
   create(@Body() createSportDto: CreateSportDto) {
     return this.sportsService.create(createSportDto);
+  }
+
+  @Post()
+  async generateSport(@Body() infos: any) {
+    let sp_gen = new SportGenerator(this.sportsService, infos.answers);
+    let generated_sport = sp_gen.generateSport();
+
+    return await fetch('http://localhost:3000/users/' + infos.id, {
+      method: 'POST',
+      body: JSON.stringify({
+        sport: generated_sport,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
   }
 
   @Get()
