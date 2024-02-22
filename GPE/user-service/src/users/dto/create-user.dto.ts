@@ -1,4 +1,5 @@
 import {
+  IsEmpty,
   IsNotEmpty,
   IsString,
   MaxLength
@@ -30,14 +31,9 @@ export class CreateUserDto {
   @MaxLength(300)
   lastname: string;
 
-  public getPassword(): string
-  {
-    return this.password;
-  }
-
-  public setPassword(password: string): void
-  {
-    this.password = password;
-  }
+  @ApiProperty({type: String})
+  @IsString()
+  @IsEmpty()
+  sport: string;
 }
 
