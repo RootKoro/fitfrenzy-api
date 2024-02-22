@@ -22,7 +22,7 @@ export class ProgramService {
     return this.programModel.find();
   }
 
-  findOne(id: string) {
+  async findOne(id: string): Promise<ProgramDocument> {
     return this.programModel.findById(id);
   }
 

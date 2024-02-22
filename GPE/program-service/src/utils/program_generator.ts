@@ -11,6 +11,7 @@ export class ProgramGenerator {
   sport: string;
   exercices: Promise<ExerciceDocument[]>;
   userLevel: string;
+  id_user: string;
   exerciceService: ExerciceService;
 
   constructor(
@@ -19,11 +20,13 @@ export class ProgramGenerator {
     sport: string,
     exerciceService: ExerciceService,
     userLevel: string,
+    id_user: string,
   ) {
     this.schedule = schedule;
     this.sport = sport;
     this.userLevel = userLevel;
     this.exerciceService = exerciceService;
+    this.id_user = id_user;
   }
 
   private static getRandomSubset<T>(array: T[], count: number): T[] {
@@ -32,7 +35,7 @@ export class ProgramGenerator {
     return shuffledArray.slice(0, count);
   }
 
-  private async selectExercices(mood: string): Promise<ExerciceDocument[]> {
+  private async selectExercices(): Promise<ExerciceDocument[]> {
     let warmups = await this.exerciceService.findByTypeNSport(
       'warmup',
       this.sport,
@@ -50,15 +53,36 @@ export class ProgramGenerator {
     workouts = workouts.filter((workout) => workout.level === this.userLevel);
     stretches = stretches.filter((strech) => strech.level === this.userLevel);
     
+    warmups = ProgramGenerator.getRandomSubset(warmups, 4);
+    workouts = ProgramGenerator.getRandomSubset(workouts, 4);
+    stretches = ProgramGenerator.getRandomSubset(stretches, 5);
+    
+    let exercises = [warmups, workouts, stretches]
+    return [].concat(...exercises)
+  }
+
+  public async selectExerciceByMood(mood: string): Promise<ExerciceDocument[]> {
+    let warmups: ExerciceDocument[] = await this.exerciceService.findByTypeNSport(
+      'warmup',
+      this.sport,
+    );
+    let workouts: ExerciceDocument[] = await this.exerciceService.findByTypeNSport(
+      'exercise',
+      this.sport,
+    );
+    let stretches: ExerciceDocument[] = await this.exerciceService.findByTypeNSport(
+      'streching',
+      this.sport,
+    );
+
+    warmups = warmups.filter((warmup) => warmup.level === this.userLevel);
+    workouts = workouts.filter((workout) => workout.level === this.userLevel);
+    stretches = stretches.filter((strech) => strech.level === this.userLevel);
+    
     if(mood == "tired"){
       warmups = ProgramGenerator.getRandomSubset(warmups, 2);
       workouts = ProgramGenerator.getRandomSubset(workouts, 3);
       stretches = ProgramGenerator.getRandomSubset(stretches, 4);
-    }
-    else if (mood == "good"){
-      warmups = ProgramGenerator.getRandomSubset(warmups, 3);
-      workouts = ProgramGenerator.getRandomSubset(workouts, 5);
-      stretches = ProgramGenerator.getRandomSubset(stretches, 5);
     }
     else{
       warmups = ProgramGenerator.getRandomSubset(warmups, 5);
@@ -67,17 +91,18 @@ export class ProgramGenerator {
     }
 
     let exercises = [warmups, workouts, stretches]
-    return [].concat(...exercises)
+    return <ExerciceDocument[]>[].concat(...exercises)
   }
 
-  public async generatePrograms(mood: string): Promise<CreateProgramDto[]> {
-    const exercises = await this.selectExercices(mood);
+  public async generatePrograms(): Promise<CreateProgramDto[]> {
+    const exercises = await this.selectExercices();
     let programs: CreateProgramDto[] = [];
     programs.push({
+      id_user: this.id_user,
       difficulty: this.userLevel,
       schedule: this.schedule,
       exercices: exercises,
-      done: false
+      done: false,
     })
 
     return programs;

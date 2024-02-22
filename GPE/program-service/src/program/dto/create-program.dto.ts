@@ -12,6 +12,11 @@ export class CreateProgramDto {
   @ApiProperty({type: String})
   @IsNotEmpty()
   @IsString()
+  id_user: string;
+
+  @ApiProperty({type: String})
+  @IsNotEmpty()
+  @IsString()
   difficulty: string;
   
   @ApiProperty({type: Array<String>})

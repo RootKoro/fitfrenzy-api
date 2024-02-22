@@ -9,6 +9,9 @@ export type ProgramDocument = Program & Document;
 })
 export class Program {
   @Prop({ required: true })
+  id_user: string;
+  
+  @Prop({ required: true })
   difficulty: string;
 
   @Prop({ required: true })

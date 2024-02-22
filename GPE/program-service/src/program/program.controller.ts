@@ -6,12 +6,14 @@ import {
   Body,
   Param,
   Delete,
-  Put,
+  Patch,
 } from '@nestjs/common';
 import { ExerciceService } from './exercice.service';
 import { ProgramService } from './program.service';
 import { ProgramGenerator } from '../utils/program_generator';
 import { UpdateProgramDto } from './dto/update-program.dto';
+import { ProgramDocument } from 'src/schemas/program.schema';
+import { ExerciceDocument } from 'src/schemas/exercice.schema';
 
 
 @Controller('programs')
@@ -31,13 +33,14 @@ export class ProgramController {
         infos.sport,
         this.exerciceService,
         infos.userLevel,
+        infos.id_user,
       );
 
       const programs = await pg.generatePrograms();
       programs.forEach((program) => this.programService.create(program));
       return { success: true, message: 'Programs created successfully' };
     } catch (error) {
-      return { success: false, message: 'Error creating programs' };
+      return { success: false, message: 'Error while creating programs' };
     }
   }
 
@@ -51,9 +54,30 @@ export class ProgramController {
     return this.programService.findOne(id);
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateProgramDto: UpdateProgramDto) {
+  @Patch('schedule/:id')
+  updateSchedule(@Param('id') id: string, @Body() updateProgramDto: UpdateProgramDto) {
     return this.programService.update(id, updateProgramDto);
+  }
+
+  @Patch('mood/:mood/:id')
+  async updateMood(@Param('mood') mood: string, @Param('id') id: string, @Body() infos: any) {
+    try {
+      const pg = new ProgramGenerator(
+        infos.schedule,
+        infos.sport,
+        this.exerciceService,
+        infos.userLevel,
+        infos.id_user,
+      )
+
+      let program: ProgramDocument = await this.programService.findOne(id);
+      let exercises: ExerciceDocument[] = await pg.selectExerciceByMood(mood);
+
+      program.exercices = exercises
+      return this.programService.update(id, program);
+    } catch (error) {
+      return { success: false, message: 'Error while updating program' };
+    }
   }
 
   @Delete(':id')
