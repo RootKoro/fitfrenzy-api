@@ -5,6 +5,7 @@ WORKDIR /app
 
 COPY ./questionary-service/package*.json ./
 
+RUN npm install -g @nestjs/cli
 RUN npm install
 
 COPY ./questionary-service .
@@ -21,6 +22,7 @@ WORKDIR /app
 
 COPY ./questionary-service/package*.json ./
 
+RUN npm install -g @nestjs/cli
 RUN npm install --only=production
 
 COPY ./questionary-service .
