@@ -74,9 +74,9 @@ export class ProgramGenerator {
       this.sport,
     );
 
-    warmups = warmups.filter((warmup) => warmup.level === this.userLevel);
-    workouts = workouts.filter((workout) => workout.level === this.userLevel);
-    stretches = stretches.filter((strech) => strech.level === this.userLevel);
+    warmups = warmups.filter((warmup) => warmup.level.includes(this.userLevel));
+    workouts = workouts.filter((workout) => workout.level.includes(this.userLevel));
+    stretches = stretches.filter((strech) => strech.level.includes(this.userLevel));
     
     if(mood == "tired"){
       warmups = ProgramGenerator.getRandomSubset(warmups, 2);
