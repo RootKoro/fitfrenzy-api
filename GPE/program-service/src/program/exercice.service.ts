@@ -24,7 +24,7 @@ export class ExerciceService {
   }
 
   async findBySport(sport: string): Promise<ExerciceDocument[]> {
-    return await this.exerciceModel.find({ sports: { $elemMatch: {sport} } });
+    return await this.exerciceModel.find({ sports: { $in: {sport} } });
   }
 
   async findByName(name: string): Promise<ExerciceDocument[]> {
@@ -41,7 +41,7 @@ export class ExerciceService {
   ): Promise<ExerciceDocument[]> {
     return await this.exerciceModel.find({
       type: type,
-      sports: { $elemMatch: {sport} },
+      sports: sport,
     });
   }
 

@@ -26,7 +26,7 @@ export class ProgramService {
     return this.programModel.findById(id);
   }
 
-  async findByUserId(userId: string): Promise<ProgramDocument> {
+  async findByUserId(userId: string): Promise<ProgramDocument[]> {
     return this.programModel.find({id_user: userId});
   }
 

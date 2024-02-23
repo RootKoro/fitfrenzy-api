@@ -1,0 +1,40 @@
+{
+    "infos": [
+        {
+            "schedule": ["Lundi 8:30 - 10:30", "Mardi 8:30 - 10:30", "Mercredi 8:30 - 10:30", "Jeudi 8:30 - 10:30"],
+            "sport": "football",
+            "userLevel": "debutant",
+            "id_user": "65d7f560be8550e800185d5f"
+        },
+        {
+            "schedule": ["Lundi 15:00 - 10:30", "Mardi 18:30 - 20:30", "Mercredi 10:00 - 10:30", "Jeudi 12:30 - 13:00"],
+            "sport": "basketball",
+            "userLevel": "debutant",
+            "id_user": "65d7f561be8550e800185d62"
+        },
+        {
+            "schedule": ["Lundi 8:30 - 10:30", "Mardi 8:30 - 10:30", "Mercredi 8:30 - 10:30", "Jeudi 8:30 - 10:30"],
+            "sport": "handball",
+            "userLevel": "debutant",
+            "id_user": "65d7f560be8550e800185d5f"
+        },
+        {
+            "schedule": ["Lundi 15:00 - 10:30", "Mardi 18:30 - 20:30", "Mercredi 10:00 - 10:30", "Jeudi 12:30 - 13:00"],
+            "sport": "tennis",
+            "userLevel": "debutant",
+            "id_user": "65d7f561be8550e800185d65"
+        },
+        {
+            "schedule": ["Lundi 8:30 - 10:30", "Mardi 8:30 - 10:30", "Mercredi 8:30 - 10:30", "Jeudi 8:30 - 10:30"],
+            "sport": "golf",
+            "userLevel": "debutant",
+            "id_user": "65d7f561be8550e800185d68"
+        },
+        {
+            "schedule": ["Lundi 15:00 - 10:30", "Mardi 18:30 - 20:30", "Mercredi 10:00 - 10:30", "Jeudi 12:30 - 13:00"],
+            "sport": "fitness",
+            "userLevel": "debutant",
+            "id_user": "65d7f561be8550e800185d6b"
+        }
+    ]
+}

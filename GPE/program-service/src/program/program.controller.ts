@@ -55,8 +55,10 @@ export class ProgramController {
   }
 
   @Get('/by-user/:id_user')
-  findByUser(@Param('id_user') id_user: string) {
-    return this.programService.findByUserId(id_user);
+  async findByUser(@Param('id_user') id_user: string) {
+    let prgs = await this.programService.findByUserId(id_user);
+    let prg = prgs.pop();
+    return prg;
   }
 
   @Patch('schedule/:id')

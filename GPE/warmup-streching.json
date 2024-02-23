@@ -1,26 +1,6 @@
 {
     "exercices": [
         {
-            "label": "Leg Swings",
-            "type": "warmup",
-            "sports": [
-                "football",
-                "baseball",
-                "basketball",
-                "handball",
-                "rugby",
-                "cyclisme"
-            ],
-            "level": [0, 1, 2, 3],
-            "media_path": "...",
-            "description": "Debout avec une main sur un support stable comme un mur par exemple pour l'équilibre. De manière semi-circulaire, balance une jambe d'avant en arrière, tout en la gardant droite, pour préparer les muscles. Ensuite de gauche à droite, toujours en gardant la jambe droite, visant les les muscles internes et externes des cuisses. Cela augmentera ta souplesse pour la séance à venir, augmente la pression sangine au niveau des muscles, et diminue les risques de blessures.",
-            "chrono": false,
-            "time_in_sec": 0,
-            "reps": 15,
-            "rest": 30,
-            "series": 1
-        },
-        {
             "label": "Hip Circles",
             "type": "warmup",
             "sports": [
@@ -29,16 +9,18 @@
                 "basketball",
                 "handball",
                 "rugby",
-                "cyclisme"
+                "cyclisme",
+                "tennis",
+                "golf"
             ],
-            "level": [0, 1, 2, 3],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Debout les jambes écartées à une longueur égale à celle des épaules et les mains sur les hanches. Tu devras commencer par faire mouvoir ton bassin de manière circulaire, en augmentant progressivement le diamètre des cercles. Concentre toi sur le control et la précision de tes mouvements. Tu devras effectuer les rotations dans un sens, puis le même nombre de rotations dans l'autre sens. Cela permettra un allégement au niveau des articulations des hanches, améliorer la mobilité, et activer les muscles pelviens.",
-            "chrono": false,
-            "time_in_sec": 0,
-            "reps": 25,
-            "rest": 30,
-            "series": 1
+            "chrono": true,
+            "time_in_sec": 45,
+            "reps": 0,
+            "rest": 15,
+            "series": 2
         },
         {
             "label": "Arm Circles",
@@ -50,16 +32,18 @@
                 "handball",
                 "rugby",
                 "fitness",
-                "bodybuilding"
+                "bodybuilding",
+                "tennis",
+                "golf"
             ],
-            "level": [0, 1, 2, 3],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Debout les jambes écartées à une longueur égale à celle des épaules, les bras tendus sur les côtés, effectues des mouvements circulaires stables avec tes bras, en augmentant petit à petit le diamètre des rotations. Répètes les mouvements dans le sens des aiguilles d'une montre, ensuite dans l'autre sens afin de pouvoir réchauffer les épaules et les muscles du bras.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 45,
             "reps": 0,
-            "rest": 30,
-            "series": 1
+            "rest": 15,
+            "series": 2
         },
         {
             "label": "Bodyweight squats",
@@ -74,7 +58,7 @@
                 "bodybuilding",
                 "cyclisme"
             ],
-            "level": [0, 1, 2, 3, 10],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "media",
             "description": "Debout les jambes écartées à une longueur égale à celle des épaules, les pieds pointant légèrement vers l'extérieur. La poitrine bombée, baisse toi en pliant les genoux et en remenant vers l'arrière ton dos comme en s'asayant dans une chaise. Le poids devant être porté par les genoux, tu dois coninuer à descendre jusqu'à ce que tes cuisses soient parrallèle au sol. Ensuite appuie sur tes talons afin de te remettre dans une position totalement droite. Cela fait travailler les quadriceps, les hamstrings, les glutes, ; un excellent exercice pour le bas du corps pour préparer des muscles, de la force et de l'endurence.",
             "chrono": false,
@@ -87,76 +71,107 @@
             "label": "Bird-Dog",
             "type": "warmup",
             "sports": [
-                "football",
-                "baseball",
-                "basketball",
                 "handball",
                 "rugby",
-                "golf",
-                "tennis",
-                "remise em forme",
                 "fitness",
                 "bodybuilding",
-                "cyclisme",
-                "bras de fer"
+                "cyclisme"
             ],
-            "level": [0, 1, 2, 3, 10],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "media",
             "description": "...",
             "chrono": true,
             "time_in_sec": 45,
             "reps": 0,
             "rest": 30,
-            "series": 1
+            "series": 2
         },
         {
             "label": "Toe Touches",
             "type": "warmup",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "football",
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "fitness",
+                "bodybuilding",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Sit on the ground with legs extended straight in front. Reach forward towards the toes, keeping the back straight. Hold onto the feet or ankles and gently pull yourself forward.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 15,
             "reps": 0,
-            "rest": 30,
-            "series": 1
+            "rest": 15,
+            "series": 3
         },
         {
             "label": "Neck Rolls",
             "type": "warmup",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "football",
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "golf",
+                "tennis",
+                "fitness",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Stand or sit tall, slowly drop the chin towards the chest, and gently roll the head in a circular motion, first to one side and then the other. This helps to loosen up the neck muscles and improve mobility.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 30,
             "reps": 0,
-            "rest": 30,
-            "series": 1
+            "rest": 15,
+            "series": 2
         },
         {
             "label": "Side Lunges",
             "type": "warmup",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "football",
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "tennis",
+                "fitness",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Stand with feet wider than shoulder-width apart, bend one knee while keeping the other leg straight, lowering the body to one side. Keep the chest lifted and back straight. Alternate sides to stretch the inner thighs and hips.",
             "chrono": false,
             "time_in_sec": 0,
-            "reps": 0,
+            "reps": 35,
             "rest": 30,
-            "series": 1
+            "series": 2
         },
         {
             "label": "Jumping Jacks",
             "type": "warmup",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "football",
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "tennis",
+                "fitness",
+                "bodybuilding",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Start with feet together, jump and spread arms and legs out to the sides. Return to the starting position and repeat. This exercise elevates heart rate and warms up multiple muscle groups.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 60,
             "reps": 0,
             "rest": 30,
             "series": 1
@@ -164,106 +179,170 @@
         {
             "label": "Hip Flexor Stretch",
             "type": "stretching",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "football",
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "tennis",
+                "fitness",
+                "bodybuilding",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Kneel on one knee with the other foot flat on the ground in front, gently push hips forward while keeping the torso upright. Hold the stretch for 20-30 seconds, then switch legs.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 45,
             "reps": 0,
             "rest": 30,
-            "series": 1
+            "series": 2
         },
         {
             "label": "Triceps Stretch",
             "type": "stretching",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "tennis",
+                "fitness",
+                "bodybuilding"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Reach one arm overhead and bend at the elbow, bringing the hand down towards the center of the back. Use the opposite hand to gently press the elbow towards the center of the back. Hold the stretch, then switch sides.",
             "chrono": false,
             "time_in_sec": 0,
-            "reps": 0,
+            "reps": 15,
             "rest": 30,
-            "series": 1
+            "series": 2
         },
         {
+
             "label": "Shoulder Stretch",
             "type": "stretching",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "tennis",
+                "fitness",
+                "bodybuilding",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Bring one arm across the body at shoulder height, using the opposite hand to gently pull the arm towards the chest. Hold the stretch, then switch sides.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 30,
             "reps": 0,
-            "rest": 30,
-            "series": 1
+            "rest": 15,
+            "series": 2
         },
         {
             "label": "Groin Stretch",
             "type": "stretching",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "football",
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "fitness",
+                "bodybuilding",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Sit on the ground with the soles of the feet together and knees bent out to the sides. Hold onto the feet and gently press the knees towards the ground, feeling a stretch in the inner thighs.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 30,
             "reps": 0,
-            "rest": 30,
-            "series": 1
+            "rest": 10,
+            "series": 2
         },
         {
             "label": "Piriformis Stretch",
             "type": "stretching",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "football",
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "fitness",
+                "bodybuilding",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Lie on your back with knees bent, cross one ankle over the opposite knee, and grab behind the thigh of the bottom leg. Pull the bottom leg towards the chest, feeling a stretch in the glutes.",
             "chrono": false,
-            "time_in_sec": 0,
+            "time_in_sec": 45,
             "reps": 0,
-            "rest": 30,
-            "series": 1
+            "rest": 10,
+            "series": 2
         },
         {
             "label": "Lower Back Stretch",
             "type": "stretching",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "football",
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "fitness",
+                "bodybuilding",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Lie on your back with knees bent, bring both knees towards the chest and hug them with your arms. Gently rock side to side to massage the lower back.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 45,
             "reps": 0,
-            "rest": 30,
-            "series": 1
+            "rest": 10,
+            "series": 2
         },
         {
             "label": "Side Stretch",
             "type": "stretching",
-            "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "sports": [
+                "football",
+                "basketball",
+                "baseball",
+                "handball",
+                "rugby",
+                "fitness",
+                "bodybuilding",
+                "cyclisme"
+            ],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Stand with feet hip-width apart, raise one arm overhead and lean to the opposite side, creating a stretch along the side of the body. Hold the stretch, then switch sides.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 45,
             "reps": 0,
-            "rest": 30,
-            "series": 1
+            "rest": 10,
+            "series": 2
         },
         {
             "label": "Wrist Flexor Stretch",
             "type": "stretching",
             "sports": ["basketball", "soccer", "volleyball", "track and field", "dance"],
-            "level": [0, 1, 2, 3],
+            "level": ["débutant", "intermédiaire", "avancé"],
             "media_path": "...",
             "description": "Extend one arm in front with palm facing down, use the opposite hand to gently press the fingers towards the body, stretching the wrist and forearm muscles. Repeat on the other side.",
-            "chrono": false,
-            "time_in_sec": 0,
+            "chrono": true,
+            "time_in_sec": 45,
             "reps": 0,
-            "rest": 30,
-            "series": 1
+            "rest": 10,
+            "series": 2
         }
     ]
 }
