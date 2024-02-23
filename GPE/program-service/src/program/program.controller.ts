@@ -54,6 +54,11 @@ export class ProgramController {
     return this.programService.findOne(id);
   }
 
+  @Get('/by-user/:id_user')
+  findByUser(@Param('id_user') id_user: string) {
+    return this.programService.findByUserId(id_user);
+  }
+
   @Patch('schedule/:id')
   updateSchedule(@Param('id') id: string, @Body() updateProgramDto: UpdateProgramDto) {
     return this.programService.update(id, updateProgramDto);

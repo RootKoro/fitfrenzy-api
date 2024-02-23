@@ -10,7 +10,7 @@ import { Exercice } from 'src/schemas/exercice.schema';
 export class ProgramService {
   constructor(
     @InjectModel(Program.name) private readonly programModel: Model<ProgramDocument>,
-    @InjectModel(Exercice.name) private readonly exerciceModel: Model<ProgramDocument>,
+    // @InjectModel(Exercice.name) private readonly exerciceModel: Model<ProgramDocument>,
   ) {}
 
   async create(createProgramDto: CreateProgramDto): Promise<ProgramDocument> {
@@ -24,6 +24,10 @@ export class ProgramService {
 
   async findOne(id: string): Promise<ProgramDocument> {
     return this.programModel.findById(id);
+  }
+
+  async findByUserId(userId: string): Promise<ProgramDocument> {
+    return this.programModel.find({id_user: userId});
   }
 
   async update(id: string, updateProgramDto: UpdateProgramDto): Promise<ProgramDocument> {

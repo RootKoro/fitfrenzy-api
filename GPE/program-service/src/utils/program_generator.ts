@@ -57,7 +57,7 @@ export class ProgramGenerator {
     stretches = ProgramGenerator.getRandomSubset(stretches, 5);
     
     let exercises = [warmups, workouts, stretches]
-    return <ExerciceDocument[]>[].concat(...exercises)
+    return [].concat(...exercises)
   }
 
   public async selectExerciceByMood(mood: string): Promise<ExerciceDocument[]> {
@@ -90,7 +90,7 @@ export class ProgramGenerator {
     }
 
     let exercises = [warmups, workouts, stretches]
-    return <ExerciceDocument[]>[].concat(...exercises)
+    return [].concat(...exercises)
   }
 
   public async generatePrograms(): Promise<CreateProgramDto[]> {
