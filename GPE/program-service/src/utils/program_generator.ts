@@ -40,7 +40,7 @@ export class ProgramGenerator {
       this.sport,
     );
     let workouts = await this.exerciceService.findByTypeNSport(
-      'exercise',
+      'workout',
       this.sport,
     );
     let stretches = await this.exerciceService.findByTypeNSport(
@@ -66,7 +66,7 @@ export class ProgramGenerator {
       this.sport,
     );
     let workouts: ExerciceDocument[] = await this.exerciceService.findByTypeNSport(
-      'exercise',
+      'workout',
       this.sport,
     );
     let stretches: ExerciceDocument[] = await this.exerciceService.findByTypeNSport(
