@@ -44,7 +44,7 @@ export class ProgramGenerator {
       this.sport,
     );
     let stretches = await this.exerciceService.findByTypeNSport(
-      'streching',
+      'stretching',
       this.sport,
     );
 
@@ -57,7 +57,7 @@ export class ProgramGenerator {
     stretches = ProgramGenerator.getRandomSubset(stretches, 5);
     
     let exercises = [warmups, workouts, stretches]
-    return [].concat(...exercises)
+    return <ExerciceDocument[]>[].concat(...exercises)
   }
 
   public async selectExerciceByMood(mood: string): Promise<ExerciceDocument[]> {
@@ -70,7 +70,7 @@ export class ProgramGenerator {
       this.sport,
     );
     let stretches: ExerciceDocument[] = await this.exerciceService.findByTypeNSport(
-      'streching',
+      'stretching',
       this.sport,
     );
 
