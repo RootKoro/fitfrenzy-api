@@ -17,7 +17,7 @@ export class Exercice {
   sports: string[];
 
   @Prop({ required: true })
-  level: number[];
+  level: string[];
 
   @Prop({ required: true })
   media_path: string;

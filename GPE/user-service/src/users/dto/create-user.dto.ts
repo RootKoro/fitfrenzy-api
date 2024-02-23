@@ -1,6 +1,6 @@
 import {
-  IsEmpty,
   IsNotEmpty,
+  IsOptional,
   IsString,
   MaxLength
 } from 'class-validator';
@@ -33,7 +33,7 @@ export class CreateUserDto {
 
   @ApiProperty({type: String})
   @IsString()
-  @IsEmpty()
+  @IsOptional()
   sport: string;
 }
 

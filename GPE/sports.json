@@ -5,49 +5,49 @@
             "category": "equipe",
             "difficulty": "moyen",
             "description": "Pas de description",
-            "rate": null
+            "rate": 0
         },
         {
             "label": "basketball",
             "category": "equipe",
             "difficulty": "moyen",
             "description": "Pas de description",
-            "rate": null
+            "rate": 0
         },
         {
             "label": "baseball",
             "category": "equipe",
             "difficulty": "moyen",
             "description": "Pas de description",
-            "rate": null
+            "rate": 0
         },
         {
             "label": "handball",
             "category": "equipe",
             "difficulty": "moyen",
             "description": "Pas de description",
-            "rate": null
+            "rate": 0
         },
         {
             "label": "rugby",
             "category": "equipe",
             "difficulty": "moyen",
             "description": "Pas de description",
-            "rate": null
+            "rate": 0
         },
         {
             "label": "golf",
             "category": "individuel",
             "difficulty": "moyen",
             "description": "Pas de description",
-            "rate": null
+            "rate": 0
         },
         {
             "label": "tennis",
             "category": "individuel",
             "difficulty": "moyen",
             "description": "Pas de description",
-            "rate": null
+            "rate": 0
         },
         {
             "label": "fitness",

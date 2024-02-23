@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import { Exercice, ExerciceDocument } from '../schemas/exercice.schema';
 import { ExerciceService } from '../program/exercice.service';
 import { CreateProgramDto } from '../program/dto/create-program.dto';
@@ -49,9 +48,9 @@ export class ProgramGenerator {
       this.sport,
     );
 
-    warmups = warmups.filter((warmup) => warmup.level === this.userLevel);
-    workouts = workouts.filter((workout) => workout.level === this.userLevel);
-    stretches = stretches.filter((strech) => strech.level === this.userLevel);
+    warmups = warmups.filter((warmup) => warmup.level.includes(this.userLevel));
+    workouts = workouts.filter((workout) => workout.level.includes(this.userLevel));
+    stretches = stretches.filter((strech) => strech.level.includes(this.userLevel));
     
     warmups = ProgramGenerator.getRandomSubset(warmups, 4);
     workouts = ProgramGenerator.getRandomSubset(workouts, 4);

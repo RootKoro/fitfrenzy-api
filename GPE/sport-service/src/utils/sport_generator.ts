@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import { Sport, SportDocument } from 'src/schemas/sport.schema';
 import { SportsService } from 'src/sports/sports.service';
 

@@ -20,7 +20,7 @@ export class CreateExerciceDto {
   @ApiProperty({ type: Number })
   @IsNotEmpty()
   @IsArray()
-  level: number[];
+  level: string[];
 
   @ApiProperty({ type: String })
   @IsNotEmpty()

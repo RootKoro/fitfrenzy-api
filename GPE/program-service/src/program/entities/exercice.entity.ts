@@ -1,7 +1,7 @@
 export class Exercice {
   label: string;
   type: string; /* warmup / exercice / streching */
-  level: number;
+  level: string;
   sports: string[];
   media_path: string;
   description: string;
